@@ -31,10 +31,16 @@ btn.onclick=function(){ // onclick : 자바의 action performed 역할
 	//alert(bc + "," + sd);
 	let canvas = document.getElementById('can1');
 	let ctx = canvas.getContext('2d');
+	ctx.shadowOffsetX=10;
+	ctx.shadowOffsetY=10;
+	ctx.shadowColor = sd;
+	ctx.shadowBlur=5;
 	ctx.fillStyle = bc;
 	ctx.fillRect(30,30,230,80);
 	
 }
+
+
 </script>
 </body>
 </html>
