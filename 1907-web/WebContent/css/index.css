@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body{
+  font-family:'나눔바른고딕';
+}
+
 #main{
   border : 1px solid #000;
   width : 1200px;
@@ -8,23 +12,40 @@
 }
 
 #header{
-  background-color:#fee;
-  height : 150px;
+  height : 220px;
+  background-image:url('../images/구글.png');
+  background-size:100% 100%;
 }
 
 #nav{
-  background-color:#efe;
-  height:120px;
+  background-color:#363c3d;
+  height:50px;
   margin-bottom:5px;
-  overflow:hidden;	
+  overflow:hidden;
+  color:yellow;	
 }
 
 #nav li{
-  float:left;
+  float:right;
   list-style:none;
   margin-right:8px;
 }
 
+#nav li:link{
+  color:yellow;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+#nav li:visited{
+  color:yellow;
+  text-decoration:none;
+}
+
+#nav li>a{
+  color:yellow;
+  text-decoration:none;
+}
 #nav li:hover{
   background-color:#777;
   color:#333;
@@ -45,6 +66,7 @@
 }
 
 #main_content{
+  height:1000px;
   width:800px;
   background-color:#aaffaa; 
 }
@@ -55,6 +77,12 @@
 }
 
 #footer{
-  height:80px;
+  height:95px;
   background-color:#bbb;
+  padding:10px;
+}
+
+#footer>div{
+  text-align:center;
+  margin:3px;
 }
