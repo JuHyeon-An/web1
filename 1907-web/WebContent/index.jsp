@@ -17,9 +17,9 @@
   <header id='header'>header</header>
   <nav id='nav'>
 	<ul>
-	  <li>menu2</li>
-	  <li>menu3</li>
-	  <li>menu4</li>
+	  <li><a>menu2</a></li>
+	  <li><a>menu3</a></li>
+	  <li><a>menu4</a></li>
 	  <li><a href='./css/index_css.jsp'>CSS</a></li>
 	  <li><a href='./html5/index_html.jsp'>HTML</a></li>
 	</ul>

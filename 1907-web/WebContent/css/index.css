@@ -19,16 +19,21 @@ body{
 
 #nav{
   background-color:#363c3d;
-  height:50px;
-  margin-bottom:5px;
   overflow:hidden;
-  color:yellow;	
+  color:yellow;
+  padding:3px;
+}
+
+#nav ul{
+  text-align:right;
+  margin:4px;
+  padding:0px;
 }
 
 #nav li{
-  float:right;
+  text-align:center;
+  display:inline;
   list-style:none;
-  margin-right:8px;
 }
 
 #nav li:link{
@@ -42,13 +47,14 @@ body{
   text-decoration:none;
 }
 
-#nav li>a{
+#nav li a{
   color:yellow;
   text-decoration:none;
+  padding:5px;
 }
-#nav li:hover{
+#nav li a:hover{
   background-color:#777;
-  color:#333;
+  color:white;
   cursor:pointer;
 }
 
@@ -79,7 +85,9 @@ body{
 #footer{
   height:95px;
   background-color:#bbb;
-  padding:10px;
+  padding-top:3px;
+  padding-bottom:20px;
+  box-sizing: border-box;
 }
 
 #footer>div{
