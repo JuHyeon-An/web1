@@ -12,8 +12,6 @@ body{
   font-family:'나눔스퀘어B';
 }
 
-
-
 #info{
   border:2px outset #7777ff;
   padding:10px;

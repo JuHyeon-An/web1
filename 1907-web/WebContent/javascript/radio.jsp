@@ -81,7 +81,7 @@ frm.btn.onclick = function(){
 		  mntFlag = true;
 	  }	
 	}
-	if(mntFlag == false){
+	if(!mntFlag){
 		alert('가고싶은 산을 선택하세요.');
 		return;
 	}
