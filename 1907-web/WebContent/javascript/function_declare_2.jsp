@@ -20,9 +20,9 @@
 </p>
 <div id='result'></div>
 <form id='frm'>
- <label><input type='checkbox' name='chk' value='짜장면'>짜장면</label>
+ <label><input type='checkbox' checked name='chk' value='짜장면'>짜장면</label>
  <label><input type='checkbox' name='chk' value='짬뽕'>짬뽕</label>
- <label><input type='checkbox' name='chk' value='탕수육'>탕수육</label>
+ <label><input type='checkbox' checked name='chk' value='탕수육'>탕수육</label>
  <label><input type='checkbox' name='chk' value='볶음밥'>볶음밥</label>
 <br/>
 <br/>
@@ -42,8 +42,9 @@ frm.btn1.onclick = function(){
 	r.innerHTML = '<li> 익명함수 : ';
 	array.length = 0;
 	for(x of frm.chk){
-		if(x.checked)
+		if(x.checked){
 		array.push(x.value);
+		}
 	}
 r.innerHTML += array;
 }
@@ -72,12 +73,11 @@ let ff = function a(){
 r.innerHTML += array;
 }
 
-frm.btn3.onclick = function(){ff()};
+frm.btn3.onclick = ff;
 
 // 선언적 함수
-frm.btn4.onclick = function(){f()};
 
-let f = function b(){
+let f = function(){
 	r.innerHTML = '<li> 선언적 함수 : ';
 	array.length = 0;
 	for(x of frm.chk){
@@ -87,6 +87,7 @@ let f = function b(){
 r.innerHTML += array;
 }
 
+frm.btn4.onclick = f;
 
 //화살표 함수
 let arrow = () => {
@@ -99,7 +100,7 @@ let arrow = () => {
 r.innerHTML += array;
 };
 
-frm.btn5.onclick = function(){arrow()};
+frm.btn5.onclick = arrow;
 
 </script>
 </body>
