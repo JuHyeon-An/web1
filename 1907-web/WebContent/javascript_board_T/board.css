@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+*{
+  font-family : '둥근모꼴';
+  font-size:18px;	
+}
+
+#brd_select{
+	width:600px;
+	position: relative;
+	/* 제일 바깥 틀(부모)은 relative, 그 안에 요소들은 absolute */
+}
+
+form>label{
+	display: inline-block;
+	width:70px;
+}
+form>textarea{
+	margin-top:5px;
+}
+#hit{
+	border:0 
+}
+#title{
+	margin-top:10px;
+	background-color:#777;
+	padding:3px;
+	color:#fff;
+}
+#list>div{
+	padding:3px;
+}
+#list>div:hover{
+	background-color:#ccc;
+}
+#list>div:last-of-type{
+	border-bottom:3px solid #888;
+}
+
+#findStr{
+	position:absolute;
+	right:45px;
+}
+#btnSearch{
+	position:absolute;
+	right:0
+/* 오른쪽 여백이 0 (오른쪽에 딱 붙게 됨) */
+}
+div>span{
+	display: inline-block;
+}
+.serial { width:50px ; }
+.subject{ width:200px; }
+.mName{ width: 100px; }
+.mDate{ width:120px; }
+.hit{ width:80px;}
+
+#content{
+	margin-top:10px;
+	padding:10px;
+	box-sizing : border-box;
+	border:2px solid #ddd;
+	width:500px;
+	min-height:100px;
+	box-shadow: 2px 2px 4px #ccc;
+	border-radius: 7px;
+}
