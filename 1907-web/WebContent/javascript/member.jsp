@@ -42,7 +42,7 @@
 
 <script>
 frm.btn.onclick = function(){
-	let w = window.open('zip.jsp', 'w', '');
+	let w = window.open('zip.jsp', 'w', 'width=300px, height=400px');
 }
 
 frm.btn2.onclick = function(){ // daum API 사용
