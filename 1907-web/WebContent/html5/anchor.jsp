@@ -65,16 +65,7 @@
 
 <div id='1장'></div>
 여기는 1장입니다.<br/><a href='#메인'>메인으로 가기</a>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/></div>
+<p margin='200px'></p></div>
 
 <div id='2장'></div>
 여기는 2장입니다.<br/><a href='#메인'>메인으로 가기</a>
