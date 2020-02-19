@@ -8,14 +8,14 @@
 <script src="../lib/jquery-3.4.1.js"></script>
 <style>
 #menu{
-width:500px;
-box-sizing:border-box;
-padding:20px;
-text-align:center;
+	width:500px;
+	box-sizing:border-box;
+	padding:20px;
+	text-align:center;
 }
 #menu>div{
-display:inline-block;
-float:left;
+	display:inline-block;
+	float:left;
 }
 #menu span{
 	display: block;
@@ -28,13 +28,13 @@ float:left;
 }
 
 #menu>div>div{
-display:none;
+	display:none;
 }
 #menu div>li{
 }
 
 #menu li{
-list-style:none;
+	list-style:none;
 }
 </style>
 </head>
