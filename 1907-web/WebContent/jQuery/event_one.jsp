@@ -21,11 +21,18 @@
 
 <script>
 
+// 1번방법
 $('h1').one({
 	click : function(){
 		$(this).html('click');
 		alert('클릭됨');
 		}
+});
+
+// 2번방법
+$('h1').one('click', function(){
+	$(this).html('클릭!!');
+	alert('클릭됨');
 });
 
 </script>

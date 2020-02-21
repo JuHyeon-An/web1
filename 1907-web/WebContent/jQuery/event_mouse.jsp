@@ -18,14 +18,15 @@ button{
   </canvas>
   <br/>
 <button>clear</button>
+<input type="color" id="col"/>
 </body>
   <script>
-  let c	anvas = document.getElementById('canvas');
+  let canvas = document.getElementById('canvas');
   let context = canvas.getContext('2d');
-  context.strokeStyle = 'salmon';
   let flag=false; //mousedown일때 true, mouseup일때 false
   $(canvas).on({
 	  mousemove:function(event){
+  		context.strokeStyle = $('#col').val();
 		  if(flag){
 		  let position = $(this).offset();
 		  // 마우스 포인터부터 그려지도록 (왼쪽모서리 맨 위부터)

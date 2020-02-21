@@ -32,9 +32,11 @@
 $('textarea').keyup(function(){
 	let inputlen = $(this).val().length;
 	let remain = 150-inputlen;
+	// 입력할 수 있는 글자수를 반환함
 	
 	$('h1').html(remain);
 if(remain<0){
+	// 남아있는 글자수가 0보다 작으면 글자를 빨갛게
 	$('h1').css('color', 'red');
 }else{
 	$('h1').css('color', 'black');

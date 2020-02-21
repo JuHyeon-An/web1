@@ -30,6 +30,14 @@ $('h1').on({
 	mouseenter:function(){ $(this).addClass('reverse'); },
 	mouseleave:function(){ $(this).removeClass('reverse');}
 });
+
+/* hover 이용 =>
+$('h1').hover(function(){
+	$(this).addClass('reverse');
+}, function(){
+	$(this).removeClass('reverse');
+});
+*/
 </script>
 </body>
 </html>

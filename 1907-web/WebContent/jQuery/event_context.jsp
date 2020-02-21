@@ -33,6 +33,7 @@ div{
 </div>
 
 <script>
+
 $('div').click(function(){
 	let header=$('h1', this).text();
 	// 자신이 선택한 div의 h1의 값(text)를 담음
@@ -42,6 +43,16 @@ $('div').click(function(){
 	alert(header+'\n'+paragraph);
 	// 출력
 });
+
+// find 메소드 이용
+$('div').click(function(){
+	let header = $(this).find('h1').text();
+	// 이벤트가 발생한 div에서 h1을 찾아라
+	let paragraph = $(this).find('p').text();
+	
+	alert(header+'\n'+paragraph);
+});
+
 </script>
 </body>
 </html>
