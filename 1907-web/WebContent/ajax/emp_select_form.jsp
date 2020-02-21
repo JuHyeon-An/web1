@@ -10,10 +10,10 @@
 <style>
 *{
 font-family:'빙그레 메로나체';
-color:#ffffff;
 }
 
 body {
+	color:#ffffff;
     background-image:url('../images/starrynight.gif');
     background-size:100%;
     background-repeat: repeat-y;
@@ -79,7 +79,7 @@ cursor:pointer;
 </style>
 <body>
 <h1>사원조회</h1>
-<form name='frm'>
+<form name='frm' id='frm'>
   <input type="text" id="findStr"/>
   <input type="button" value="검색" id="btnFind"/>
 </form>
@@ -87,6 +87,13 @@ cursor:pointer;
 <div id="photo"></div>
 </body>
 <script>
+$('#frm').submit(function(){
+	$('#btnFind').click();
+	return false;
+});
+/* submit 이라는 이벤트 발생하면 return false 날려서 
+ * 이벤트 중지시키고 그 전에 btnFind 클릭 이벤트를 발생시킴  */
+
 let xhr = new XMLHttpRequest();
 
 $('#btnFind').click(function(){
