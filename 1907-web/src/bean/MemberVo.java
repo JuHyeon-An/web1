@@ -9,7 +9,7 @@ public class MemberVo {
 	Date rDate; // 입학일 not null
 	int grade; // 학년 (check)
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+ 
 	public MemberVo() {
 	}
 
