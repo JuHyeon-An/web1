@@ -3,41 +3,33 @@
  * data : 2020.02.21 
  */
 
+
 let xhr = new XMLHttpRequest();
 let init = function(url){
 	// 멤버 메인이 로딩되면 바로 호출되는 함수 - 초기화면 설정 (조회)
 	// member_select를 연결해서 result 영역에 출력
-	
-	xhr.open('get', url);
-	xhr.send();
-	xhr.onreadystatechange = function(){
-		if(xhr.status == 200 && xhr.readyState == 4){
-			$('#result').html(xhr.responseText);
-		};
-	};
+	$('#result').load(url);
 };
 
 
 let insert = function(){
 	let v = $('#frmInsert').serialize();
-	xhr.open('POST', 'member_insert.jsp', true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-	xhr.send(v);
-	xhr.onreadystatechange=function(){
-		if(xhr.status==200 && xhr.readyState==4){
-			if(xhr.reponseText==1){
-					alert('성공');
-					console.log(xhr.reponseText);
-				}else{
-					alert('실패');
-					console.log(xhr.reponseText);
-				};
-		};
-	};
+	
+	$.post('member_insert.jsp', v, function(data) {
+		$.toast('메시지');
+	});
 };
 
 let search = function(){
-	let v = $('#findStr').val();
+	let v = '';
+	
+	if($('#findStr')!=null){
+		v = $('#findStr').val();
+		
+	}else{
+		v = "";
+	}
+	
 	let url = 'member_select.jsp?findStr='+v;
 	
 	xhr.open('get', url);
@@ -64,7 +56,7 @@ let search = function(){
 				+ "</div>";
 				i++;
 		});
-		$('#result2').html(str);
+		$('#result').html(str);
 	};
 };
 };

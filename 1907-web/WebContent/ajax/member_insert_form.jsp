@@ -10,18 +10,18 @@
 <body>
 <h3>멤버등록</h3>
 
-<form name="frm" id="frmInsert" method="post">
+<form name="frm" id="frmInsert">
 
-<label>이름 : </label><input type="text" name="mname" value="홍" /><br/>
-<label>아이디 : </label><input type="text" name="mid" value="hong" /><br/>
-<label>등록날짜 : </label><input type="date" name="rdate"/>
+<label>이름 : </label><input type="text" name="mname" id="mname" value="홍" /><br/>
+<label>아이디 : </label><input type="text" name="mid" id="mid" value="hong" /><br/>
+<label>등록날짜 : </label><input type="date" name="rdate" id="rdate"/>
 <br/>
 <label>학년 : </label>
-<select name="sel">
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
+<select name="grade" id="grade">
+	<option value="1">1학년</option>
+	<option value="2">2학년</option>
+	<option value="3">3학년</option>
+	<option value="4">4학년</option>
 </select>
 <br/>
 <input type="button" value="등록" id="btnInsert" />
@@ -29,7 +29,10 @@
 <div id="resultInsert"></div>
 
 <script>
+
 $('#btnInsert').click(function(){
+	let v = $('#frmInsert').serialize();
+	console.log(v);
 	insert();
 });
 </script>

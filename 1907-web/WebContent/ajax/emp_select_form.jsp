@@ -87,6 +87,7 @@ cursor:pointer;
 <div id="photo"></div>
 </body>
 <script>
+
 $('#frm').submit(function(){
 	$('#btnFind').click();
 	return false;

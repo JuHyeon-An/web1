@@ -9,6 +9,10 @@
 <script src='../lib/jquery-3.4.1.js'></script>
 <script src='member.js'></script>
 
+<link rel="stylesheet" type="text/css" href="jquery.toast.css" />
+<script type="text/javascript" src="../toast/jquery.toast.js"></script> 
+
+
 </head>
 <body>
 <h2>회원관리</h2>
@@ -20,10 +24,15 @@
 <span class='sub' id='select'>회원조회 |  검색</span>
 
 </div>
-<div id='result'></div>
+
+<div id='result'><div id='form'></div></div>
 
 
 <script>
+$('#main').click(function(){
+	$('#result').html("<h1>메인화면입니다~~~</h1>");
+});
+
 $('#select').click(function(){
 	init('member_select_form.jsp'); // 메인화면
 });
