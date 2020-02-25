@@ -7,7 +7,6 @@
 
 <%
 
-
 out.print(request.getParameter("mid"));
 int g = Integer.parseInt(request.getParameter("grade"));
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -38,4 +37,5 @@ String str = dao.insert(vo);
 
 out.print(str);
 */
+
 %>

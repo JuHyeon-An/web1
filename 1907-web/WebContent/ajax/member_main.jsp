@@ -9,6 +9,7 @@
 <script src='../lib/jquery-3.4.1.js'></script>
 <script src='member.js'></script>
 
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="jquery.toast.css" />
 <script type="text/javascript" src="../toast/jquery.toast.js"></script> 
 

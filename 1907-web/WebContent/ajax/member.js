@@ -57,6 +57,7 @@ let search = function(){
 				i++;
 		});
 		$('#result').html(str);
+
 	};
 };
 };
