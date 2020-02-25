@@ -1,0 +1,57 @@
+@charset "UTF-8";
+#main{
+display: inline-block;
+width:550px;
+margin:auto;
+}
+form>label{
+display: inline-block;
+width:70px;
+text-align: right;
+}
+/*------------------------------------------*/
+/* select */
+/*------------------------------------------*/
+#select{
+position: relative;
+}
+#select>form>div{
+display: inline-block;
+position: absolute;
+right:10px;
+}
+#select>#title{
+background: #665;
+color:#ff0;
+margin-top:5px;
+padding-bottom:4px;
+}
+#select span, .item span{ display: inline-block;}
+.item:hover{
+background: #ccc;
+font-weight:bold;
+cursor: pointer;
+}
+.mId{ width : 150px;}
+.mName{ width : 170px;}
+.rDate{ width : 130px;}
+.grade{ width : 70px; text-align:center}
+/*------------------------------------------*/
+/* insert */
+/*------------------------------------------*/
+#insert>form>label{
+display: inline-block;
+width:60px;
+text-align: right;
+}
+/*------------------------------------------*/
+/* 처리 결과 */
+/*------------------------------------------*/
+.result_ok{
+border:2px solid #00f;
+border-radius:10px;
+background-color:#aaf;
+padding:20px;
+width:300px;
+margin:20px;
+}
