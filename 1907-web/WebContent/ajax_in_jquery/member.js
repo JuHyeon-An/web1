@@ -19,11 +19,21 @@ let init = function(){
 			select();
 		});
 	});
+
+	/*
+	$('#form').load('member_select.jsp', function(){
+		$('#btnFind').click(function(){
+			findStr = $('#findStr').val();
+			select();
+		})
+	})
+	*/
 }
 
 let select = function(){
 	// 검색어 정보 유지
 	$('#findStr').val(findStr);
+	$('#result').removeClass('result_ok');
 	
 	$.getJSON('member_select_result.jsp?findStr='+findStr, function(json){ 
 		
@@ -55,6 +65,11 @@ let select = function(){
 			$('#form').html(data);
 			$('#result').html('');
 		});
+		
+		/*
+		$('#form').load('member_insert.jsp');
+		$('#result').html('');
+		*/
 		
 	});
 }
