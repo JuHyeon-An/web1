@@ -4,7 +4,7 @@
  */
 
 let os = require('os'); //import os; include 'os.h'
-
+// <script src='os.js'></script>
 console.log(os.hostname());
 console.log(os.type());
 console.log(os.platform());

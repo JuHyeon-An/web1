@@ -5,97 +5,86 @@
  * (localStorage.setItem(key,v) / getItem(key) )
  */
 
+// npm install node-localstorage 명령 사용해서 외부 모듈 설치 필요
+// require -> 일종의 import 기능
 var LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./');
 
-let products = []; // 입고자료
-let stock = []; // 재고
-let Data = function(code, codeName, ea, price){
+var products = []; // 입고자료 : 발생된 데이터 저장
+var stock = []; // 재고 : 동일한 코드 들어왔을때 기존에 코드가 있으면 기존에 증가, 없으면 새로 추가
+
+var Data = function(code, codeName, ea, price){
 	this.code = code;
 	this.codeName = codeName;
 	this.ea = ea;
 	this.price = price;
-	this.amt = this.ea * this.price;
+	this.amt = ea * price;
 };
 
-let input = function(data){ // 입고자료를 배열에 저장한 후 코드에 해당하는 품목의 재고데이터에 누적 계산
+var input = function(data){ // 입고자료를 배열에 저장한 후 코드에 해당하는 품목의 재고데이터에 누적 계산
 	//let data2 = JSON.stringify(data);
 	
 	products.push(data);
-	if(stock == null){
-		stock.push(data);
-	};
+	// products는 '입고' 이벤트 발생하면 무조건 추가
 	
 	let flag = true;
-	
+	// true -> stock에 추가, false-> stock에 갱신
 	for(s of stock){
 		if(s.code == data.code){
-			s.ea += data.ea;
-			s.amt += data.amt;
+			s.ea = Number(s.ea) + Number(data.ea);
+			s.amt = Number(s.amt) + Number(data.amt);
 			flag = false;
 		}
 	};
 	if(flag){
-		stock.push(data);
+		let sData = new Data(data.code, data.codeName, data.ea, data.price);
+		stock.push(sData);
 	}
 };
 
-
-let output = function(){ // 입고자료를 모두 출력
+var output = function(){ // 입고자료를 모두 출력
 	console.log("-----products---------------");
-	for (d of products){
-	//let pro = JSON.parse(d);
+	for (var d of products){
 	
-	console.log("코드 : %s", d.code);
-	console.log("제품명 : %s", d.codeName);
-	console.log("수량 : %d", d.ea);
-	console.log("단가 : %d", d.price);
-	console.log("총액 : %d", d.amt);
-	console.log("----------------------------");
+	console.log('%s \t %s \t %s \t %s \t %s', d.code, d.codeName,
+			d.ea.toLocaleString('en'), d.price.toLocaleString('en'),
+			d.amt.toLocaleString('en'));
 	
 	}
 	
 	console.log("-----stocks---------------");
-	for (s of stock){
+	for (var s of stock){
 		//let stocks2 = JSON.parse(s);
 		
-		console.log("코드 : %s", s.code);
-		console.log("제품명 : %s", s.codeName);
-		console.log("수량 : %d", s.ea);
-		console.log("단가 : %d", s.price);
-		console.log("총액 : %d", s.amt);
-		console.log("----------------------------");
-		
+		console.log('%s \t %s \t %s \t %s \t %s', s.code, s.codeName,
+				s.ea.toLocaleString('en'), s.price.toLocaleString('en'),
+				s.amt.toLocaleString('en'));
 		}
 }
 
-let save = function(){ // 배열을 문자열로(JSON) 변환하여 localStorage에 저장 
+var save = function(){ // 배열을 문자열로(JSON) 변환하여 localStorage에 저장 
 	
-	for (d of products){
-	let pro = JSON.stringify(d);
-	localStorage.setItem('data', pro);
-	};
-
-	for ( s of stock){
-	let st = JSON.stringify(s);
-	localStorage.setItem('stock', st);
-	};
+	let tempP = JSON.stringify(products);
+	let tempS = JSON.stringify(stock);
+	
+	localStorage.setItem('products', tempP);
+	localStorage.setItem('stock', tempS);
 };
 
 //localStorage에 있는 값을 배열에 저장
-let read = function(){
+var read = function(){
 	
-	let c = localStorage.getItem('data');
-	for ( d of c ){
-		products.push(d);
-	}
+	let tempP = localStorage.getItem('products');
+	let tempS = localStorage.getItem('stock');
 	
+	products = JSON.parse(tempP);
+	stock = JSON.parse(tempS);
 };
 
-let main = function(args){
+var main = function(args){
 		
-		let p1 = new Data('code1', '새우깡', 1000, 700);
-		let p2 = new Data('code1', '새우깡', 1000, 700);
+		let p1 = new Data('code1', '새우깡', 2000, 500); // stock에 새로 추가
+		let p2 = new Data('code1', '새우깡', 1000, 700); // stock에 갱신 (수량, 가격 더해서)
 		let p3 = new Data('code2', '감자깡', 1500, 300);
 		let p4 = new Data('code3', '고구마깡', 3800, 200);
 		let p5 = new Data('code4', '양파깡', 500, 2000);
@@ -107,8 +96,8 @@ let main = function(args){
 		input(p5);
 		
 		save();
-		output();
 		read();
+		output();
 };
 
 main();
