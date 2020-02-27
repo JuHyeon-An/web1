@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,19 +7,26 @@
 </head>
 <body>
 <h3>item 관리</h3>
-<form action="/products" method="get">
-<fieldset>
-	<legend>GET</legend>
-	<input type="submit"/>
-</fieldset>
-</form name='frm'>
-<form action="/products" method="post">
-<fieldset>
-	<legend>POST</legend>
-	<input name= "name"/>
-	<input name= "price"/>
-	<input type = "submit"/>
-</fieldset>
+<form name='frm' method='post'>
+	<fieldset><legend>데이터</legend>
+		<label>품목<input type='text' name='name' value='커피'/></label><br/>
+		<label>단가<input type='text' name='price'/></label>
+	</fieldset>
+	<input type='button' value='조회' name='search'/>
+	<input type='button' value='입력' name='insert'/>
+	<input type='button' value='수정' name='modify'/>
+	<input type='button' value='삭제' name='del'/>
+	<input type='button' value='전체 조회' name='all'/>
 </form>
+<script>
+frm.search.onclick = function(){ frm.method='get'; frm.action = 'search'; frm.submit();}
+// frm.action => 요청 신호의 종류
+frm.insert.onclick = function(){ frm.action = 'insert'; frm.submit();}
+frm.modify.onclick = function(){ frm.action = 'modify'; frm.submit();}
+frm.del.onclick = function(){ frm.action = 'del'; frm.submit();}
+frm.all.onclick = function(){ frm.action = 'all'; frm.submit();}
+
+</script>
+
 </body>
 </html>

@@ -27,47 +27,47 @@ let init = function(){
 }
 
 let select = function(){
-	// 검색어 정보 유지
-	$('#findStr').val(findStr);
-	xhr.open('get', 'member_select_result.jsp?findStr=' + findStr);
-	xhr.send();
-	xhr.onreadystatechange = function(){
-		if(xhr.status==200 && xhr.readyState==4){
-			let json = JSON.parse(xhr.responseText);
-			let data = '';
-			for(d of json){
-				data += "<div class='item'> <a onclick=\"view('" + d.mid + "')\">" 
-				     +  "<span class='mId'>" + d.mid + '</span>'
-				     +  "<span class='mName'>" + d.mname + '</span>'
-				     +  "<span class='rDate'>" + d.rdate + '</span>'
-				     +  "<span class='grade'>" + d.grade + '</span>'
-				     +  '</a></div>';
-			}
-			$('#result').removeClass('result_ok');
-			// result_ok라는 스타일 적용을 취소하기 위해서 remove
-			$('#result').html(data);
-		}
-	}
-	
-	//엔터키를 눌렀을 때  submit 기능 중지하고 검색 버튼에 클릭 이벤트 발생
-	$('#frm').submit(function(){
-		$('#btnFind').click();
-		return false;
-	});
-
-	// 회원추가 버튼이 클릭된 경우
-	$('#btnInsert').click(function(){
-		xhr.open('get', 'member_insert.jsp');
+		// 검색어 정보 유지
+		$('#findStr').val(findStr);
+		xhr.open('get', 'member_select_result.jsp?findStr=' + findStr);
 		xhr.send();
 		xhr.onreadystatechange = function(){
 			if(xhr.status==200 && xhr.readyState==4){
-				$('#form').html(xhr.responseText);
-				$('#result').html('');
-				//member_insert를 폼 영역에 로딩해주고 검색결과는 깨끗하게 지워주기
-				
+				let json = JSON.parse(xhr.responseText);
+				let data = '';
+				for(d of json){
+					data += "<div class='item'> <a onclick=\"view('" + d.mid + "')\">" 
+					     +  "<span class='mId'>" + d.mid + '</span>'
+					     +  "<span class='mName'>" + d.mname + '</span>'
+					     +  "<span class='rDate'>" + d.rdate + '</span>'
+					     +  "<span class='grade'>" + d.grade + '</span>'
+					     +  '</a></div>';
+				}
+				$('#result').removeClass('result_ok');
+				// result_ok라는 스타일 적용을 취소하기 위해서 remove
+				$('#result').html(data);
 			}
-		};
-	});
+		}
+		
+		//엔터키를 눌렀을 때  submit 기능 중지하고 검색 버튼에 클릭 이벤트 발생
+		$('#frm').submit(function(){
+			$('#btnFind').click();
+			return false;
+		});
+	
+		// 회원추가 버튼이 클릭된 경우
+		$('#btnInsert').click(function(){
+			xhr.open('get', 'member_insert.jsp');
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.status==200 && xhr.readyState==4){
+					$('#form').html(xhr.responseText);
+					$('#result').html('');
+					//member_insert를 폼 영역에 로딩해주고 검색결과는 깨끗하게 지워주기
+					
+				}
+			};
+		});
 }
 
 // 회원가입 폼에서 등록 버튼이 클릭된 경우

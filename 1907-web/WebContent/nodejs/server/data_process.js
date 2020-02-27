@@ -7,37 +7,43 @@
 var express = require('../begin/node_modules/express');
 var bodyParser = require('../begin/node_modules/body-parser');
 
+var app = express();
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended:false}));
+
 var items = [
 	{'name': '우유', 'price':2000},
 	{'name': '홍차', 'price':5000},
 	{'name': '커피', 'price':7000}
 	];
 
-var app = express();
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended:false}));
-
-app.get('/products', function (req, resp){
-	resp.send(items);
+// 전체 조회
+app.post('/all', function (req, resp){
+	let str = '<div id="title"><span class="a">품목</span><span class="b">가격</span></div>';
+	
+	for(d of items){
+		str += '<div><span class="a">' + d.name
+			+ '</span><span class="b">' + d.price + '</span></div>';
+	}
+	let css = "<style>#title{ background:black; color:white; } </style>";
+	resp.send(css+str);
 });
 
-app.get('/products/:id', function(req, resp){
-	var id = Number(req.params.id);
+
+// 검색
+app.get('/search', function(req, resp){
+	let find = req.param('name');
+	let msg = '검색결과<br/>';
 	
-	if(isNaN(id)){
-		resp.send({
-			error:'숫자를 입력하세요!'
-		});
-	}else if (items[id]){
-		reponse.send(items[id]);
-	}else{
-		reponse.send({
-			error:'존재하지 않는 데이터입니다!'
-		});
+	for(d of items){
+		if(d.name == find){
+			resp.send('<li>'+d.name+'<li>'+d.price);
+		}
 	}
 });
 
-app.post('/products', function (req, resp){
+//입력
+app.post('/insert', function (req, resp){
 	var formname = req.body.name;
 	var formprice = req.body.price;
 	
@@ -54,12 +60,20 @@ app.post('/products', function (req, resp){
 	});
 });
 
-app.put('/products/:id', function(req, resp){
+// 수정
+app.post('/modify', function(req, resp){
 	
-	var id = Number(req.params.id);
 	var name = req.body.name;
 	var price = req.body.price;
 	
+	for( d of items ){
+		if(d.name == name){
+			d.price = price;
+		}
+	}
+	
+	resp.send(name + ' 의 단가가 '+price+'로 수정됨');
+	/*
 	if(items[id]){
 		if(name){items[id].name = name;}
 		if(price){items[id].prcie = price;}
@@ -73,9 +87,21 @@ app.put('/products/:id', function(req, resp){
 			error:'존재하지 않는 데이터입니다'
 		});
 	}
+	*/
 });
 
+app.post('/del', function(req, resp){
+	let n = req.body.name;
+	for(i=0; i<items.length; i++){
+		if(items[i].name == n){
+			items.splice(i,1);
+		}
+	}
+	
+	resp.send('<font color="red">'+n+'자료가 삭제됨</font>');
+});
 
+/*
 app.del('/products/:id', function(req, resp){
 	var id = Number(req.params.id);
 	if(isNaN(id)){
@@ -93,9 +119,9 @@ app.del('/products/:id', function(req, resp){
 		});
 	};
 });
+*/
 
-
-app.listen(9991, function(){
+app.listen(8315, function(){
 	console.log('SERVER-------');
 });
 
