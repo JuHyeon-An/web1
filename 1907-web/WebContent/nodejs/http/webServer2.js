@@ -57,7 +57,7 @@ function connect(){
 					return;
 				}
 				console.log('connection OK.....');
-				let sql = "select * from member";
+				let sql = "select * from book_member";
 				connection.execute(sql, function(err2, result){
 					console.log('row : '+result.rows);
 					disCon(connection);

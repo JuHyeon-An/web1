@@ -189,3 +189,12 @@ if(brd.btnInit != null){
 	}
 }
 
+function Data(mName, subject, content, serial, hit, mDate){
+	this.mName = mName;
+	this.subject = subject;
+	this.content = content;
+	this.serial = serial;
+	this.hit = hit;
+	this.mDate = mDate;
+}
+

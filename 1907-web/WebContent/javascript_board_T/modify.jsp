@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel='stylesheet' type='text/css' href='board.css'/>
+<script src='board.js'></script>
 </head>
 <body>
 <h3>게시판 수정</h3>
@@ -22,7 +23,6 @@
 	<input type='button' value='수정' name='btnUpdate'/>
 	<input type='button' value='목록' name='btnSelect'/>
 </form>
-<script src='board.js'></script>
 
 <script>
 let serial = localStorage.getItem('serial');
