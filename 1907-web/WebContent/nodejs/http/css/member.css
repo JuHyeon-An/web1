@@ -1,0 +1,35 @@
+@charset "UTF-8";
+*{
+    font-family: '나눔바른고딕';
+}
+
+#select{
+    width: 600px;
+}
+
+#title{
+    background: #665;
+    color:#ff0;
+    margin-top:5px;
+    padding:4px;
+    font-size: 20px;
+    }
+
+#title>span, #item>span{
+    display: inline-block;
+}
+
+#item>span{
+    box-sizing: border-box;
+    padding:4px;
+}
+.mId{ width : 140px;}
+.mName{ width : 160px;}
+.rDate{ width : 120px;}
+.grade{ width : 60px; text-align:center}
+
+#result{
+    border: #aaf;
+    overflow: auto;
+    height: 500px;
+}

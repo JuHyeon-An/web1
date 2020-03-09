@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>처리된 결과를 표시해주는 페이지</title>
-<script type="text/javascript" src="./lib/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="./lib/member.js"></script>
+<link rel='stylesheet' type='text/css' href='member.css'>
+<script type="text/javascript" src="jquery-3.4.1.js"></script>
+<script type="text/javascript" src="member.js"></script>
 </head>
 <body>
-<h3>회원이 가입됨!!!!!</h3>
-<input type='button' value='목록' id='btnList'>
+<h3><%=msg%></h3>
+<form name='frm' id='frm' method="POST">
+    <input type='button' value='목록' id='btnList'>
+</form>
 <script>btnFunc();</script>
 </body>
 </html>

@@ -2,12 +2,13 @@
  * 회원관리
  * date : 2020.01.21
  */
-let findStr='';//화면이 바꾸어도 검색어를 유지하기 휘한 변수
+//let findStr='';//화면이 바꾸어도 검색어를 유지하기 휘한 변수
 
 /*
  * member_main 을 처름으로 호출했을 때와 목록 버튼이 클릭된 경우
  * 검색폼과 목록을 표시하기 위해
  */
+/*
 let init = function(){
 	xhr.open('get', 'member_select.jsp');
 	xhr.send();
@@ -24,30 +25,69 @@ let init = function(){
 		}
 	}
 }
+*/
+let view = function(mId){
+	frm.mId.value = mId;
+
+	frm.method = 'post';
+	// post로 주지 않으면 get타입으로 넘어가서 한번 더 명시함
+
+	$('#frm').attr('action', 'view').submit();
+	// view.ejs로 넘어가게
+}
 
 let select = function(){
 	btnFunc();
 }
 
 let btnFunc = function(){
-	if($('#btnList')!=null){
-		$('#btnList').click(function(){
-			location.href='select.html';
+	if($('#btnFind')!=null){
+		$('#btnFind').click(function(){
+			//frm.str.value = frm.findStr.value;
+			// 폼의 검색창에 있는 값을 hidden 태그에
+			//findStr = frm.str.value;
+
+			$('#frm').attr('action', 'select').submit();
+			// <form action='select' />
+			// submit 날리면 요청정보가 select로 간다.
+			// web 서버에서는 app.all('/select', function)에서 받을 것
 		})
 	}
-	
+
 	if($('#btnInsert')!=null){
 		$('#btnInsert').click(function(){
-			location.href='insert_form.html';
+			$('#frm').attr('action', 'insert').submit();
+			// 렌더링 될 페이지 (라우터) 종류만 insert로 변경
+		})
+	}
+
+	if($('#btnList')!=null){
+		$('#btnList').click(function(){
+			//frm.findStr.value = findStr;
+			$('#frm').attr('action', 'select').submit();
 		})
 	}
 	
-	// 저장버튼
 	if( $('#btnRegister')!=null){
 		$('#btnRegister').click(function(){
-			location.href='insert_result.html';
+			$('#frm').attr('action', 'insertR').submit();
 		})
 	}
+
+	if($('#btnDelete')!=null){
+		$('#btnDelete').click(function(){
+			let yn = confirm("정말 삭제하시겠습니까????");
+			
+			if(yn){
+				$('#frm').attr('action', 'deleteR').submit();
+			}
+		})
+	}
+}
+	/*
+	
+	// 저장버튼
+	
 	
 	if( $('#btnModify')!=null){
 		$('#btnModify').click(function(){
@@ -61,14 +101,7 @@ let btnFunc = function(){
 		})
 	}
 	
-	if($('#btnDelete')!=null){
-		$('#btnDelete').click(function(){
-			let yn = confirm("정말 삭제하시겠습니까????");
-			if(yn){
-				location.href='delete_result.html';
-			}
-		})
-	}
+	
 }
 
 // 회원가입 폼에서 등록 버튼이 클릭된 경우
@@ -78,10 +111,10 @@ let insert = function(){
 	// 회원가입할때 자동으로 오늘날짜 입력됨
 }
 
+*/
 // 목록화면에서 항목을 클릭한 경우 상세보기로 이동
-let view = function(mId){
-	location.href='view.html';
-}
+
+/*
 
 let selectOne = function(mId){
 	btnFunc();
@@ -113,3 +146,5 @@ let deleteF = function(mId){
 let modify = function(){
 	btnFunc();
 }
+
+*/

@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-	user : process.env.NODEORACLEDB_USER || 'book',
+	user : process.env.NODEORACLEDB_USER || 'park',
 	password : process.env.NODEORACLEDB_PASSWORD || '1234',
 	connectString : 
 		process.env.NODEORACLEDB_CONNECTIONSTRING || 'localhost/xe'

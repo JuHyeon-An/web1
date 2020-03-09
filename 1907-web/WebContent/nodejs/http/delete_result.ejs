@@ -2,16 +2,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자료가 삭제됨</title>
-<script type="text/javascript" src="./lib/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="./lib/member.js"></script>
+<title>delete_result</title>
+<link rel='stylesheet' type='text/css' href='member.css'>
+<script src="jquery-3.4.1.js"></script>
+<script src="member.js"></script>
 </head>
 <body>
-<form name='frm'>
-<input type="button" value="목록" name="btnList"/>
+    <h3><%=msg%></h3>
+<form name='frm' id='frm' method='post'>
+    <input type="hidden" name="findStr" value="<%=findStr%>"/>
+    <input type="button" value="목록" id="btnList"/>
 </form>
-</body>
 <script>
 btnFunc();
 </script>
+</body>
 </html>
