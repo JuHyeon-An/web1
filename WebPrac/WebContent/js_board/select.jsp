@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.css">
 <script src="../lib/jquery-3.4.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.js"></script>
 
 <title>게시글 조회</title>
 </head>
@@ -17,8 +17,8 @@
 </div>
 <div class="container">
 	<form name='brd'>
-	<button type="button" class="btn btn-primary pull-right" style="margin-bottom:15px; margin-left:10px;">검색</button>
-	<input type="text" placeholder="검색어를 입력하세요" class="form-inline pull-right" style="margin-bottom:15px;"/>
+	<button type="button" id="btnSearch" class="btn btn-dark pull-right" style="margin-bottom:15px; margin-left:10px;">검색</button>
+	<input type="text" id="findStr" placeholder="검색어를 입력하세요" class="form-inline pull-right" style="margin-bottom:15px;"/>
 	<table class="table table-dark table-hover">
 			<thead>
 			<tr>
@@ -27,7 +27,7 @@
 				<th>글쓴이</th>
 				<th>날짜</th>
 				<th>조회수</th>
-			</tr>
+			</tr>	
 			</thead>
 			<tbody id="tbody">
 			</tbody>
@@ -37,7 +37,7 @@
 </div>
 <script type="text/javascript" src="board.js"></script>
 <script>
-showList();
+brd.btnSearch.click();
 </script>
 </body>
 </html>
