@@ -63,7 +63,6 @@ let btnFunc = function(){
 
 	if($('#btnList')!=null){
 		$('#btnList').click(function(){
-			//frm.findStr.value = findStr;
 			$('#frm').attr('action', 'select').submit();
 		})
 	}
