@@ -26,6 +26,8 @@ let init = function(){
 	}
 }
 */
+
+
 let view = function(mId){
 	frm.mId.value = mId;
 
@@ -36,17 +38,10 @@ let view = function(mId){
 	// view.ejs로 넘어가게
 }
 
-let select = function(){
-	btnFunc();
-}
 
 let btnFunc = function(){
 	if($('#btnFind')!=null){
 		$('#btnFind').click(function(){
-			//frm.str.value = frm.findStr.value;
-			// 폼의 검색창에 있는 값을 hidden 태그에
-			//findStr = frm.str.value;
-
 			$('#frm').attr('action', 'select').submit();
 			// <form action='select' />
 			// submit 날리면 요청정보가 select로 간다.

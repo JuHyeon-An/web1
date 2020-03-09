@@ -12,14 +12,12 @@
 	<%
 	var f = '';
 	if(findStr!=null) f=findStr;
-	console.log(data);
 	
 	%>
 	<h1>회원조회</h1>
 	<div id="select">
 	<form name='frm' id='frm' method='post'>
 		<input type='button' value='회원추가' id='btnInsert'/>
-		<div>
 			<input type='text' name='findStr' id='findStr' value='<%=f%>'/>
 			<input type='button' value='검색' id='btnFind'/>
 			<input type='hidden' name='mId'/>

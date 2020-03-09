@@ -133,19 +133,17 @@ app.all('/select', function (req, resp) {
 	select(req, resp);
 })
 
+/*
+<select가 불려지는 시점>
+1. 페이지가 없는 상태에서 도메인만 가지고 호출 (폼이 X)
+2. 메소드가 get 혹은 post로 적용돼서 /select 로 들어왔을 때 (폼이 O)
+=> form이 있는 경우와 없는 경우 나눠서 처리
+*/
+
 // hoising 처리되도록 함수형으로 선언
 function select(req, resp) {
 	let findStr = '';
-	//req.body.findStr = req.body.str;
-	// 폼의 히든태그에 저장해놓은 값을 findStr에
-
-
-	/* bodyParser 이용해서 폼태그의 정보 가져오기
-	 <select가 불려지는 시점>
-	 1. 페이지가 없는 상태에서 도메인만 가지고 호출 (폼이 X)
-	 2. 메소드가 get 혹은 post로 적용돼서 /select 로 들어왔을 때 (폼이 O)
-	 => form이 있는 경우와 없는 경우 나눠서 처리
-	*/
+	// 폼의 히든태그에 저장해놓은 값을 findStr에 넣을 것
 
 	if (req.method == 'POST') {
 		findStr = req.body.findStr;
