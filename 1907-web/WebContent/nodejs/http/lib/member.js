@@ -38,6 +38,10 @@ let view = function(mId){
 	// view.ejs로 넘어가게
 }
 
+let insert = function(){
+	btnFunc();
+	frm.rDate.valueAsDate = new Date();
+}
 
 let btnFunc = function(){
 	if($('#btnFind')!=null){
