@@ -20,6 +20,11 @@ function loadData(){
 	}
 }
 
+//serial을 기준으로 descending
+function sortSerial(obj1, obj2){
+	return Number(obj2.num)-Number(obj1.num);
+}
+
 function storeDB(){
 	// 배열을  localStorage에 저장하는 작업
 	let tempdb = JSON.stringify(db);
@@ -75,26 +80,50 @@ if(brd.btnInit!=null){
 	}
 }
 
-function showList(){
+if(brd.btnSearch!=null){
 	// 아묻따 게시판 전체 리스트 보여줘라
-	loadData();
-	
-	let html='';
-	let tbody = document.getElementById("tbody");
-	
-	for(d of db){
-	// d 하나 : 게시판 글 한개
-		html += `<tr>
-				<td>${d.num}</td>
-				<td onclick="location.href='view.jsp?num=${d.num}'">${d.subject}</td>
-				<td>${d.writer}</td>
-				<td>${d.date}</td>
-				<td>${d.hit}</td>
-			</tr>`;
-	
+	brd.btnSearch.onclick=function(){
+		loadData();
+		
+		let html='';
+		let tbody = document.getElementById("tbody");
+		let findStr = brd.findStr.value;
+
+		db.sort(sortSerial);
+			for(d of db){
+				if(d.writer.indexOf(findStr)>=0 || d.subject.indexOf(findStr)>=0 || 
+						d.content.indexOf(findStr)>=0){
+					html += `<tr>
+						<td>${d.num}</td>
+						<td onclick="view(${d.num})">${d.subject}</td>
+						<td>${d.writer}</td>
+						<td>${d.date}</td>
+						<td>${d.hit}</td>
+					</tr>`;
+				}
+			}
+			tbody.innerHTML = html;
 	}
-	
-	tbody.innerHTML = html;
+}
+
+function view(tempNum){
+	 
+	 // 게시글 누르면 게시물 번호 추출해서 로컬에 저장
+	 // 해당 게시글 조회수 올린다음 다시 저장
+	 // 마지막으로 view.jsp 페이지로 이동
+	 console.log(tempNum);
+	 localStorage.setItem("tempNum", tempNum);
+	 
+	 for(d of db){
+		 if(d.num==tempNum){
+			d.hit++;
+			//조회수 올리기
+			temp = d;
+			storeDB();
+			break;
+		 }
+	}
+	 location.href='view.jsp';
 }
 
 //url에서 파라미터 추출
@@ -111,27 +140,63 @@ function getParam(sname) {
     return sval;
 }
 
-function view(){
-	
-	let tempNum = getParam("num");
-	console.log(tempNum);
-		
-	 loadData();
-	 console.log(db)
-	 let temp=[];
-	 for(d of db){
-		 if(d.num==tempNum){
-			d.hit++;
-			temp = d;
-			storeDB();
+
+if(brd.btnModify!=null){
+	// 수정 페이지로 이동
+	brd.btnModify.onclick=function(){
+		location.href="modify.jsp";
+	}
+}
+
+if(brd.btnSave!=null){
+	brd.btnSave.onclick=function(){
+	let tempNum = localStorage.getItem("tempNum");
+	loadData();
+	for(d of db){
+		if(d.num == tempNum){
+			d.writer = brd.writer.value;
+			d.subject = brd.subject.value;
+			d.content = brd.content.value;
+		}
+	}
+	storeDB();
+	alert("정상적으로 수정되었습니다.");
+	history.back();
+	}
+}
+
+if(brd.btnDelete!=null){
+	brd.btnDelete.onclick=function(){
+		let tempNum = localStorage.getItem("tempNum");
+		for(i=0; i<db.length; i++){
+			if(db[i].num==tempNum){
+				db.splice(i,1);
+				storeDB();
+				break;
+			}
+		}
+		alert("정상적으로 삭제되었습니다.");
+		history.back();
+		}
+	}
+
+function viewModify(){
+	let tempNum = localStorage.getItem("tempNum");
+	loadData();
+	for(d of db){
+		if(d.num == tempNum){
+			brd.writer.value = d.writer;
+			brd.subject.value = d.subject;
+			brd.content.value = d.content;
 			break;
-		 }
-	 }
-	 console.log(temp);
-	 
-	 let html = '';
-	 let tbody = document.getElementById("tbody");
-	 html = `<tr>
+		}
+	}// 값을 가져와서 폼에 넣었음
+}
+
+function inputHTML(temp){
+	let html = '';
+	let tbody = document.getElementById("tbody");
+	html = `<tr>
 		<td width="20%">글번호</td>
 		<td colspan="2">${temp.num}</td>
 	</tr>
@@ -155,66 +220,9 @@ function view(){
 		<td style="vertical-align:middle;">내용</td>
 		<td colspan="2" height="400px" style="vertical-align:middle;">${temp.content}</td>
 	</tr>`;
-	 
-	 tbody.innerHTML = html;
-
-
+	
+	tbody.innerHTML = html;
 }
-
-if(brd.btnModify!=null){
-	// 수정 페이지로 이동
-	brd.btnModify.onclick=function(){
-		let tempNum = getParam("num");
-		location.href="modify.jsp?num="+tempNum;
-		
-	}
-}
-
-if(brd.btnSave!=null){
-	brd.btnSave.onclick=function(){
-	let tempNum = getParam("num");
-	loadData();
-	for(d of db){
-		if(d.num == tempNum){
-			d.writer = brd.writer.value;
-			d.subject = brd.subject.value;
-			d.content = brd.content.value;
-		}
-	}
-	storeDB();
-	alert("정상적으로 수정되었습니다.");
-	history.back();
-	}
-}
-
-if(brd.btnDelete!=null){
-	brd.btnDelete.onclick=function(){
-		let tempNum = getParam("num");
-		for(i=0; i<db.length; i++){
-			if(db[i].num==tempNum){
-				db.splice(i,1);
-				storeDB();
-				break;
-			}
-		}
-		alert("정상적으로 삭제되었습니다.");
-		history.back();
-		}
-	}
-
-function viewModify(){
-	let tempNum = getParam("num");
-	loadData();
-	for(d of db){
-		if(d.num == tempNum){
-			brd.writer.value = d.writer;
-			brd.subject.value = d.subject;
-			brd.content.value = d.content;
-			break;
-		}
-	}// 값을 가져와서 폼에 넣었음
-}
-
 
 
 function Data(num, writer, subject, content, date, hit){

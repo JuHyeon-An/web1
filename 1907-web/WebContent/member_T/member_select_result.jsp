@@ -4,6 +4,6 @@
 <%
 String findStr = request.getParameter("findStr");
 MemberDao dao = new MemberDao();
-String json = dao.select("a");
+String json = dao.select(findStr);
 out.print(json);
 %>

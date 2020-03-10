@@ -55,6 +55,7 @@ function toHTML(d){ //backtic
 }
 
 function view(serial){
+	// 로컬스토리지에 해당 게시물번호를 저장한 후 view.jsp로 이동하는 함수
 	
 	for(let i=0 ; i<db.length ; i++){
 		if(db[i].serial == serial){

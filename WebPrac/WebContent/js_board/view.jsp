@@ -32,6 +32,25 @@
 	</form>
 </div>
 <script type="text/javascript" src="board.js"></script>
-<script>view();</script>
+<script>
+
+let temp=[];
+loadData();
+console.log(db)
+let tempNum = localStorage.getItem("tempNum"); 
+
+console.log(tempNum);
+
+for(d of db){
+	if(d.num==tempNum){
+		temp=d;
+		console.log(temp);
+	}
+}
+
+inputHTML(temp);
+
+
+</script>
 </body>
 </html>
