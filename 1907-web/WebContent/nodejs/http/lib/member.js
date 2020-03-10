@@ -77,23 +77,26 @@ let btnFunc = function(){
 			}
 		})
 	}
+
+	if( $('#btnModify')!=null){
+		$('#btnModify').click(function(){
+			$('#frm').attr('action', 'modify').submit();
+		})
+	}
+
+	if( $('#btnUpdate')!=null){
+		$('#btnUpdate').click(function(){
+			$('#frm').attr('action', 'modifyR').submit();
+		})
+	}
 }
+
+
 	/*
 	
 	// 저장버튼
 	
-	
-	if( $('#btnModify')!=null){
-		$('#btnModify').click(function(){
-			location.href='modify_form.html';
-		})
-	}
-	
-	if( $('#btnUpdate')!=null){
-		$('#btnUpdate').click(function(){
-			location.href='modify_result.html';
-		})
-	}
+
 	
 	
 }

@@ -85,11 +85,34 @@ app.post('/insertR', function (req, resp) {
 })
 
 app.post('/modify', function (req, resp) {
-
+	let param = [req.body.mId];
+	let findStr = req.body.findStr;
+	let sql = "select mId, mName, to_char(rDate, 'rrrr-mm-dd') rDate, grade"
+			  + " from member"
+			  + " where mId = :mId";
+	conn.execute(sql, param, function(err, data){
+		if(err) {
+			console.log(err);	
+		}else {
+			resp.render(__dirname+'/modify_form.ejs', 
+			{'data' : data, 'findStr' : findStr});
+		}
+	})
 })
 
 app.post('/modifyR', function (req, resp) {
+	let msg = "회원 정보가 정상적으로 수정되었습니다."
+	let param = [req.body.mName, req.body.rDate, req.body.grade, req.body.mId]
+	let findStr = req.body.findStr;
+	let sql = "update member set mName = :mName, rDate = :rDate, grade = :grade where mId = :mId";
 
+	conn.execute(sql, param, function(err, data){
+		if (err) msg = err;
+		else {
+			resp.render(__dirname + '/modify_result.ejs',
+				{ 'msg': msg , 'findStr': findStr});
+		}
+	})
 })
 
 app.post('/deleteR', function (req, resp) {
