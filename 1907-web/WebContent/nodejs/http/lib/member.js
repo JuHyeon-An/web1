@@ -100,7 +100,15 @@ let btnFunc = function(){
 	
 	// 저장버튼
 	
+<<<<<<< HEAD
 
+=======
+	if( $('#btnUpdate')!=null){
+		$('#btnUpdate').click(function(){
+			location.href='modify_result.html';
+		})
+	}
+>>>>>>> branch 'master' of https://github.com/JuHyeon-An/web1.git
 	
 	
 }
