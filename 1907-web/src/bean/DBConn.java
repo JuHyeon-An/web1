@@ -3,7 +3,7 @@ package bean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-//°øÅë¸ðµâ ¸¸µé±â
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 public class DBConn {
 
 	public static Connection getConn() {
@@ -15,7 +15,7 @@ public class DBConn {
 		
 		Connection conn = null;
 		try {
-			Class.forName(driver).newInstance(); // newInstance´Â ¿É¼Ç(ÇÏ°Å³ª¸»°Å³ª)
+			Class.forName(driver).newInstance(); // newInstanceï¿½ï¿½ ï¿½É¼ï¿½(ï¿½Ï°Å³ï¿½ï¿½ï¿½ï¿½Å³ï¿½)
 			conn = DriverManager.getConnection(url, dbUser, dbPwd);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -23,7 +23,7 @@ public class DBConn {
 		return conn;
 	}
 	
-public static Connection getConnHr() { //hr¿¡ Á¢¼ÓÇÏ´Â ¸Þ¼Òµå
+public static Connection getConnHr() { //hrï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -32,7 +32,7 @@ public static Connection getConnHr() { //hr¿¡ Á¢¼ÓÇÏ´Â ¸Þ¼Òµå
 		
 		Connection conn = null;
 		try {
-			Class.forName(driver).newInstance(); // newInstance´Â ¿É¼Ç(ÇÏ°Å³ª¸»°Å³ª)
+			Class.forName(driver).newInstance(); // newInstanceï¿½ï¿½ ï¿½É¼ï¿½(ï¿½Ï°Å³ï¿½ï¿½ï¿½ï¿½Å³ï¿½)
 			conn = DriverManager.getConnection(url, dbUser, dbPwd);
 		} catch (Exception ex) {
 			ex.printStackTrace();
