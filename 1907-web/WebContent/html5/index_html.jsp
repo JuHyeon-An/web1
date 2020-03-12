@@ -35,22 +35,22 @@ a{
 </div>
 <div id='list'>
 <ol>
-  <li><a href='anchor.jsp'>anchor</a></li>
-  <li><a href='canvas.jsp'>캔버스</a></li>
-  <li><a href='canvas_shadow.jsp'>캔버스-그림자</a></li>
-  <li><a href='drawImage.jsp'>이미지그리기</a></li>
-  <li><a href='font.jsp'>폰트</a></li>
-  <li><a href='gradient.jsp'>그래디언트</a></li>
-  <li><a href='gugudan.jsp'>구구단</a></li>
-  <li><a href='img.jsp'>이미지</a></li>
-  <li><a href='list.jsp'>리스트</a></li>
-  <li><a href='media.jsp'>미디어</a></li>
-  <li><a href='paragraph.jsp'>문단</a></li>
-  <li><a href='rotate.jsp'>도형회전</a></li>
-  <li><a href='storage.jsp'>스토리지</a></li>
-  <li><a href='storage_form.jsp'>폼 내용 저장</a></li>
-  <li><a href='table.jsp'>테이블</a></li>
-  <li><a href='worker.jsp'>워커</a></li>
+  <li><a href='index.jsp?cont=./html5/anchor.jsp'>anchor</a></li>
+  <li><a href='index.jsp?cont=./html5/canvas.jsp'>캔버스</a></li>
+  <li><a href='index.jsp?cont=./html5/canvas_shadow.jsp'>캔버스-그림자</a></li>
+  <li><a href='index.jsp?cont=./html5/drawImage.jsp'>이미지그리기</a></li>
+  <li><a href='index.jsp?cont=./html5/font.jsp'>폰트</a></li>
+  <li><a href='index.jsp?cont=./html5/gradient.jsp'>그래디언트</a></li>
+  <li><a href='index.jsp?cont=./html5/gugudan.jsp'>구구단</a></li>
+  <li><a href='index.jsp?cont=./html5/img.jsp'>이미지</a></li>
+  <li><a href='index.jsp?cont=./html5/list.jsp'>리스트</a></li>
+  <li><a href='index.jsp?cont=./html5/media.jsp'>미디어</a></li>
+  <li><a href='index.jsp?cont=./html5/paragraph.jsp'>문단</a></li>
+  <li><a href='index.jsp?cont=./html5/rotate.jsp'>도형회전</a></li>
+  <li><a href='index.jsp?cont=./html5/storage.jsp'>스토리지</a></li>
+  <li><a href='index.jsp?cont=./html5/storage_form.jsp'>폼 내용 저장</a></li>
+  <li><a href='index.jsp?cont=./html5/table.jsp'>테이블</a></li>
+  <li><a href='index.jsp?cont=./html5/worker.jsp'>워커</a></li>
 </ol>
 </div>
 </body>

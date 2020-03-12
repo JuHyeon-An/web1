@@ -10,6 +10,7 @@
    적당한 여백
    display 속성 : inline-block 타입으로 수정
    */
+/*
 
 div{
   width:250px; height:150px;
@@ -17,6 +18,7 @@ div{
   display:inline-block;
   border:2px solid;
 }
+*/
 
 #div1{
   overflow:auto;
