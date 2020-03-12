@@ -18,7 +18,6 @@
 		  return 'class'+index;
 	  });
   });
-  link:css
 </script>
 
 </body>

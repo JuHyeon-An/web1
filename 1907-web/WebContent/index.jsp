@@ -7,7 +7,6 @@
 <title>1907-web</title>
 <link rel='stylesheet' type='text/css'
       href='./css/index.css'/>
-<script src="./lib/jquery-3.4.1.js"></script>
 <style>
 
 </style>

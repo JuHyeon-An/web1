@@ -61,6 +61,8 @@ a{
   <li><a href='index.jsp?inc=./jquery/index_jquery.jsp&cont=./jquery/event_one.jsp'>event_one</a></li>
   <li><a href='index.jsp?inc=./jquery/index_jquery.jsp&cont=./jquery/event_toggle.jsp'>event_toggle</a></li>
   <li><a href='index.jsp?inc=./jquery/index_jquery.jsp&cont=./jquery/event_trigger.jsp'>event_trigger</a></li>
+  <li><a href='index.jsp?inc=./jquery/index_jquery.jsp&cont=./jquery/text.jsp'>text</a></li>
+  <li><a href='index.jsp?inc=./jquery/index_jquery.jsp&cont=./jquery/new.jsp'>text</a></li>
 </ol>
 </div>
 </body>

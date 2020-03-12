@@ -35,15 +35,15 @@ a{
 </div>
 <div id='list'>
 <ol>
-  <li><a href='./http/delete_result.jsp'>delete_result</a></li>
-  <li><a href='./http/index.html'>index</a></li>
-  <li><a href='./http/insert_form.ejs'>insert_form</a></li>
-  <li><a href='./http/insert_result.ejs'>insert_result</a></li>
-  <li><a href='./http/modify_form.ejs'>modify_form</a></li>
-  <li><a href='./http/modify_result.ejs'>modify_result</a></li>
-  <li><a href='./http/select.ejs'>select</a></li>
-  <li><a href='./http/view.ejs'>view</a></li>
-  <li><a href='./http/webServer.js'>webServer</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/delete_result.jsp'>delete_result</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/index.html'>index</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/insert_form.ejs'>insert_form</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/insert_result.ejs'>insert_result</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/modify_form.ejs'>modify_form</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/modify_result.ejs'>modify_result</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/select.ejs'>select</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/view.ejs'>view</a></li>
+  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/webServer.js'>webServer</a></li>
   
   
   

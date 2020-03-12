@@ -47,6 +47,7 @@ a{
   <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_view.jsp'>member_view</a></li>
   <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member.css'>member(css)</a></li>
   <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member.js'>member(js)</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/test.jsp'>test</a></li>
 </ol>
 </div>
 </body>
