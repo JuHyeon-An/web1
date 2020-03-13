@@ -84,6 +84,39 @@ public class MemberDao {
 	}
 	}
 	
+	public String insertVo2(MemberVo2 vo) {
+	int r = 0;
+	String str = "";
+	try {
+		conn = DBConn.getConn();
+		String sql = "insert into member values (?, ?, ?, ?)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, vo.getmId());
+		ps.setString(2, vo.getmName());
+		ps.setString(3, vo.getrDate());
+		ps.setInt(4, vo.getGrade());
+		conn.setAutoCommit(false);
+		
+		r = ps.executeUpdate();
+		
+		if(r>0) {
+			conn.commit();
+			str = vo.getmId()+"회원님이 성공적으로 추가되었습니다.";
+		}else {
+			conn.rollback();
+			str = "오류발생";
+		}
+		
+		ps.close();
+		
+		
+	}catch(Exception ex) {
+		ex.printStackTrace();
+	}finally {
+		return str;
+	}
+	}
+	
 	
 public static void main(String[] args) {
 //	MemberDao dao = new MemberDao();

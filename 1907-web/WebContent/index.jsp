@@ -22,7 +22,7 @@
   //get type으로 할것!
   
   
-  String cont = "aside.jsp";
+  String cont = "./html5/canvas_shadow.jsp";
   if(request.getParameter("cont")!=null){
 	  cont = request.getParameter("cont");
   }
