@@ -8,10 +8,10 @@
 
 <style>
 head, body{
-  font-family:'나눔바른고in_j딕';
+  font-family:'나눔바른고딕';
 }
 li{
-font-siin_jze:18px;
+font-size:18px;
 list-style-image:url('../images/correct (1).png');
 }
 #title{
@@ -35,19 +35,19 @@ a{
 </div>
 <div id='list'>
 <ol>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_delete_result.jsp'>member_delete_result</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_get.jsp'>member_get</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_insert_result.jsp'>member_insert_result</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_insert.jsp'>member_insert</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_main.jsp'>member_main</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_modify_result.jsp'>member_modify_result</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_modify.jsp'>member_modify</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_select_result.jsp'>member_select_result</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_select.jsp'>member_select</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_view.jsp'>member_view</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member.css'>member(css)</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member.js'>member(js)</a></li>
-  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/test.jsp'>test</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_delete_result.jsp'>member_delete_result</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_get.jsp'>member_get</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_insert_result.jsp'>member_insert_result</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_insert.jsp'>member_insert</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_main.jsp'>member_main</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_modify_result.jsp'>member_modify_result</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_modify.jsp'>member_modify</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_select_result.jsp'>member_select_result</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_select.jsp'>member_select</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member_view.jsp'>member_view</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member.css'>member(css)</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/member.js'>member(js)</a></li>
+  <li><a href='index.jsp?inc=./ajax_in_query/index_ajax_in_query.jsp&cont=./ajax_in_jquery/test.jsp'>test</a></li>
 </ol>
 </div>
 </body>
