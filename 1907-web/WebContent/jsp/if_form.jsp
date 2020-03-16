@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>if(form)</h3>
-<form name='frm' method='post' action='./if_form_result.jsp'>
+<form name='frm' method='post'>
   <label>성명</label>
   <input type='text' name='mName' value='hong'/><br/>
   <label>성적</label>

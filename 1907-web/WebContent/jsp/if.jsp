@@ -13,5 +13,9 @@
 <c:if test="${kor>=60 }" var="r">
 result : ${r }
 </c:if>
+<c:set var="eng" value="90"/>
+<c:if test="${eng>70 }" var="r">
+result2 : ${r }
+</c:if>
 </body>
 </html>

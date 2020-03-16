@@ -33,5 +33,7 @@
 		    </c:otherwise>
 			</c:choose>
 	</ul>
+	<span class="col-sm-4"></span>
+	<button class="btn btn-dark" onclick='history.back()'>되돌아가기</button>
 </body>
 </html>

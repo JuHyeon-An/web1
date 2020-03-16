@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MemberDao {
@@ -11,7 +13,7 @@ public class MemberDao {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public String select(String findStr) {
-		// db¿¬°á, state¸¸µé°í jsonÅ¸ÀÔÀ¸·Î °á°ú ¸®ÅÏ
+		// dbï¿½ï¿½ï¿½ï¿½, stateï¿½ï¿½ï¿½ï¿½ï¿½ jsonÅ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		conn = DBConn.getConn();
 		String data="abc";
 		try {
@@ -40,7 +42,7 @@ public class MemberDao {
 		data = sb.toString();
 		data = data.replaceAll("\'", "\"");
 		if(data.length()>1){
-			// µ¥ÀÌÅÍ°¡ °Ë»öµÇ¾úÀ¸¸é ±×¶§ ÄÞ¸¶¸¦ Áö¿ö¶ó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ë»ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¶ï¿½ ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			data = data.substring(0, data.length()-1);
 		};
 		
@@ -68,10 +70,10 @@ public class MemberDao {
 		
 		if(r>0) {
 			conn.commit();
-			str = vo.getmId()+"È¸¿ø´ÔÀÌ ¼º°øÀûÀ¸·Î Ãß°¡µÇ¾ú½À´Ï´Ù.";
+			str = vo.getmId()+"È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 		}else {
 			conn.rollback();
-			str = "¿À·ù¹ß»ý";
+			str = "ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½";
 		}
 		
 		ps.close();
@@ -101,10 +103,10 @@ public class MemberDao {
 		
 		if(r>0) {
 			conn.commit();
-			str = vo.getmId()+"È¸¿ø´ÔÀÌ ¼º°øÀûÀ¸·Î Ãß°¡µÇ¾ú½À´Ï´Ù.";
+			str = vo.getmId()+"È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 		}else {
 			conn.rollback();
-			str = "¿À·ù¹ß»ý";
+			str = "ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½";
 		}
 		
 		ps.close();
@@ -127,18 +129,37 @@ public class MemberDao {
 			if(rs.next()) {
 				if(rs.getString(1).equals(vo.getPwd())) {
 					return 1;
-					// ¾ÆÀÌµð ºñ¹Ð¹øÈ£ ÀÏÄ¡
+					// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½Ä¡
 				}
 				return 0;
-				// ¾ÆÀÌµð´Â Á¸ÀçÇÏÁö¸¸ ÀÏÄ¡ÇÏÁö ¾ÊÀ½
+				// ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 			return -1;
-			// ¾ÆÀÌµð Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return -2;
-		//DB ¿À·ù
+		//DB ï¿½ï¿½ï¿½ï¿½
+	}
+	
+	public List<MemberVo2> listAll(String mId) {
+		String sql = "select * from member where mId like ?";
+		List<MemberVo2> list = new ArrayList<MemberVo2>();
+		try {
+			conn = DBConn.getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+mId+"%");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				MemberVo2 vo = new MemberVo2(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+				list.add(vo);
+			}
+			System.out.println(list);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return list;
 	}
 	
 public static void main(String[] args) {

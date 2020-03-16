@@ -63,7 +63,7 @@ let inc='';
 function goUrl(path, inc, cont){
 	localStorage.setItem("path", path);
 	localStorage.setItem("inc", inc);
-	let url = "index.jsp?inc="+path+inc+'&cont='+path+cont;
+	let url = "index.jsp?inc="+path+inc+"&cont="+path+cont;
 	location.href = url;
 }
 
@@ -82,7 +82,6 @@ function goSubmit(frm, cont){
 	// get 타입으로도 넘기고
 	frm.submit();
 	// post 타입으로도 넘김
-	
 }
 
 
