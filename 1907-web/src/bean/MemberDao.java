@@ -117,6 +117,29 @@ public class MemberDao {
 	}
 	}
 	
+	public int login(MemberVo3 vo) {
+		String sql = "select pwd from member2 where mId=?";
+		try {
+			conn = DBConn.getConn();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getmId());
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(vo.getPwd())) {
+					return 1;
+					// 아이디 비밀번호 일치
+				}
+				return 0;
+				// 아이디는 존재하지만 일치하지 않음
+			}
+			return -1;
+			// 아이디 존재하지 않음
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return -2;
+		//DB 오류
+	}
 	
 public static void main(String[] args) {
 //	MemberDao dao = new MemberDao();
