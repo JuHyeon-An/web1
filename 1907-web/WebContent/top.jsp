@@ -20,16 +20,17 @@
 <header id='header'>header</header>
   <nav id='nav'>
 	<ul>
-	
+	 
 	  <li><a href="#" onclick='goUrl("./css", "/index_css.jsp", "/css_backgroundimage.jsp")'>CSS</a></li>
 	  <li><a href="#" onclick='goUrl("./html5", "/index_html.jsp", "/canvas_shadow.jsp")'>HTML</a></li>
-	  <li><a href='index.jsp?inc=./javascript/index_javascript.jsp&cont=./javascript/array_1.jsp'>Javascript</a></li>
-	  <li><a href='index.jsp?inc=./ajax/index_ajax.jsp&cont=./ajax/emp_select_form.jsp'>ajax</a></li>
-	  <li><a href='index.jsp?inc=./ajax_in_jquery/index_ajax_in_jquery.jsp&cont=./ajax_in_jquery/member_main.jsp'>ajax_in_jqeury</a></li>
-	  <li><a href='index.jsp?inc=./jquery/index_jquery.jsp&cont=./jquery/array_1.jsp'>jquery</a></li>
-	  <li><a href='index.jsp?inc=./nodejs/index_nodejs.jsp&cont=./nodejs/http/index.html'>nodejs</a></li>
-	  <li><a href='index.jsp?inc=./mongo_member/index_mongo_member.jsp&cont=./mongo_member/select.jsp'>mongo_member</a></li>
+	  <li><a href='#' onclick='goUrl("./javascript", "/index_javascript.jsp", "/array_1.jsp")'>Javascript</a></li>
+	  <li><a href='#' onclick='goUrl("./ajax", "/index_ajax.jsp", "/emp_select_form.jsp")'>ajax</a></li>
+	  <li><a href='#' onclick='goUrl("./ajax_in_jquery", "/index_ajax_in_jquery.jsp", "/member_main.jsp")'>ajax_in_jqeury</a></li>
+	  <li><a href='#' onclick='goUrl("./jquery", "/index_jquery.jsp", "/array_1.jsp")'>jquery</a></li>
+	  <li><a href='#' onclick='goUrl("./nodejs", "/index_nodejs.jsp", "/http/index.html")'>nodejs</a></li>
+	  <li><a href='#' onclick='goUrl("./mongo_member", "/index_mongo_member.jsp", "/select.jsp")'>mongo_member</a></li>
 	  <li><a href='#' onclick='goUrl("./jsp", "/index_jsp.jsp", "/insert.jsp")'>jsp</a></li>
+	  <li><a href='#' onclick='goUrl("./jsp_member", "/index_jsp_member.jsp", "/select.jsp")'>jsp_member</a></li>
 		
 	</ul>
   </nav>

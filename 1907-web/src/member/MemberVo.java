@@ -1,28 +1,34 @@
-package bean;
+package member;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
-public class MemberVo2 {
+public class MemberVo {
 	String mId; // pk
 	String mName; // not null
-	String rDate; // ÀÔÇÐÀÏ not null
-	int grade; // ÇÐ³â (check)
+	Date rDate; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ not null
+	int grade; // ï¿½Ð³ï¿½ (check)
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
- 
-	public MemberVo2() {
+	List<MemberPhoto> photos;
+	
+
+	public MemberVo() {
 	}
 
-	public MemberVo2(String id, String name, String d, int g) {
+	public MemberVo(String id, String name, Date d, int g, List<MemberPhoto> photos) {
 		this.mId = id;
 		this.mName = name;
 		this.rDate = d;
 		this.grade = g;
+		this.photos = photos;
 	}
 
 	String pattern = "{'mId' : '%s' , 'mName' : '%s' , 'rDate': '%s', 'grade' : '%s'}";
 
 	public String toString() {
-		String str = String.format("%10s\t%15s\t%15s\t%4d\n", mId, mName, rDate, grade);
+		String d = sdf.format(rDate);
+		String str = String.format("%10s\t%15s\t%15s\t%4d\n", mId, mName, d, grade);
 
 		return str;
 	}
@@ -50,11 +56,11 @@ public class MemberVo2 {
 		this.mName = mName;
 	}
 
-	public String getrDate() {
+	public Date getrDate() {
 		return rDate;
 	}
 
-	public void setrDate(String rDate) {
+	public void setrDate(Date rDate) {
 		this.rDate = rDate;
 	}
 
@@ -64,5 +70,13 @@ public class MemberVo2 {
 
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	
+	public List<MemberPhoto> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<MemberPhoto> photos) {
+		this.photos = photos;
 	}
 }

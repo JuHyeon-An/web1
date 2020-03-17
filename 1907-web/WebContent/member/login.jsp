@@ -20,9 +20,9 @@
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="비밀번호" name="pwd" maxlength="20"/>
 					</div>
-					<div class='btn-group btn-inline'>
+					<div class='btn-group'>
 					<input type="submit" class="btn btn-dark form-control" value="로그인"/>
-					<input type="button" class="btn btn-dark form-control" value="취소"/>
+					<input type="button" id="btnCancel" class="btn btn-dark form-control" value="취소"/>
 					</div>
 				</form>
 				</div>
@@ -31,7 +31,7 @@
 		
 <script>
 $('#btnCancel').click(function(){
-	location.href='../index.jsp';
+	location.href='/index.jsp';
 })
 </script>
 </body>

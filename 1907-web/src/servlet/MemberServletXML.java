@@ -15,22 +15,20 @@ public class MemberServletXML extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); // 요청정보 한글설정
+		request.setCharacterEncoding("utf-8"); 
 		
 		String mId = request.getParameter("mId");
 		String mName= request.getParameter("mName");
 		String rDate = request.getParameter("rDate");
 		String grade = request.getParameter("grade");
 		
-		//콘솔창에 출력
 		System.out.println("doPost");
 		System.out.println(mId);
 		System.out.println(mName);
 		System.out.println(rDate);
 		System.out.println(grade);
 
-		resp.setContentType("text/html;charset=utf-8"); // 응답정보 한글설정
-		// get writer를 가져오기 전에 반드시 컨텐트타입 선언 해줘야함
+		resp.setContentType("text/html;charset=utf-8"); 
 		
 		PrintWriter out = resp.getWriter();
 		out.print("<ul>");
@@ -39,7 +37,6 @@ public class MemberServletXML extends HttpServlet{
 		out.print("<li>rDate="+rDate);
 		out.print("<li>grade="+grade);
 		out.print("</ul>");
-		//단순히 출력만 하는 경우
 		
 		MemberVo2 vo = new MemberVo2();
 		vo.setmId(mId);

@@ -11,11 +11,9 @@
 <link rel='stylesheet' type='text/css'
       href='./css/bootstrap.css'/>
 <script src='./lib/jquery-3.4.1.js'></script>
+<script src='./jsp_member/member.js'></script>
 <script src='./js.bootstrap.js'></script>
 
-<style>
-
-</style>
 
 </head>
 <body>
@@ -84,7 +82,7 @@ function goSubmit(frm, cont){
 	// post 타입으로도 넘김
 }
 
-
+btnFunc();
 </script>
 </body>
 </html>

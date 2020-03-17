@@ -19,9 +19,11 @@
   <ul>
   <li><a href='index.jsp?inc=./jsp/index_jsp.jsp&cont=./jsp/el.jsp'>EL</a></li>
   <li><a href='index.jsp?inc=./jsp/index_jsp.jsp&cont=./jsp/el_param.jsp'>Param</a></li>
-  <li><a href='index.jsp?inc=./jsp/index_jsp.jsp&cont=./jsp/set.jsp'>set</a></li>
-  <li><a href='index.jsp?inc=./jsp/index_jsp.jsp&cont=./jsp/if.jsp'>if</a></li>
-  <li><a href='#' onclick='goSub("/if_form.jsp")'>if</a></li>
+  <li><a href='#' onclick='goSub("/set.jsp")'>set</a></li>
+  <li><a href='#' onclick='goSub("/if.jsp")'>if</a></li>
+  <li><a href='#' onclick='goSub("/if_form.jsp")'>if_form</a></li>
+  <li><a href='#' onclick='goSub("/forEach.jsp")'>forEach</a></li>
+  <li><a href='#' onclick='goSub("/forTokens.jsp")'>forTokens</a></li>
  
 </ul>
   </fieldset>

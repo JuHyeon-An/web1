@@ -11,8 +11,7 @@ body{
 }
 
 .container{
-	text-align:center;
-	margin-top:100px;
+	margin-top:10px;
 }
 
 #btnLogin, #btnLogout{
@@ -39,7 +38,7 @@ body{
 }
 #main{
   border : 1px solid #000;
-  width : 90%;
+  width : 100%;
   background-color:#eee;
   margin:auto;
 }
@@ -92,7 +91,7 @@ body{
 }
 
 #sub_menu{
-  width:200px;
+  width:15%;
   background-color:#ffaaaa;	
 }
 
@@ -106,12 +105,12 @@ body{
 
 #main_content{
   height:90%;
-  width:800px;
+  width:70%;
   background-color:transparent; 
 }
 
 #aside{
-  width:200px;
+  width:15%;
   background-color:#aaaaff;
 }
 

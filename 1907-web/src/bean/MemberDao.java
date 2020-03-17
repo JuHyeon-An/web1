@@ -13,7 +13,7 @@ public class MemberDao {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public String select(String findStr) {
-		// db����, state����� jsonŸ������ ��� ����
+		// db占쏙옙占쏙옙, state占쏙옙占쏙옙占� json타占쏙옙占쏙옙占쏙옙 占쏙옙占� 占쏙옙占쏙옙
 		conn = DBConn.getConn();
 		String data="abc";
 		try {
@@ -42,7 +42,7 @@ public class MemberDao {
 		data = sb.toString();
 		data = data.replaceAll("\'", "\"");
 		if(data.length()>1){
-			// �����Ͱ� �˻��Ǿ����� �׶� �޸��� ������
+			// 占쏙옙占쏙옙占싶곤옙 占싯삼옙占실억옙占쏙옙占쏙옙 占쌓띰옙 占쌨몌옙占쏙옙 占쏙옙占쏙옙占쏙옙
 			data = data.substring(0, data.length()-1);
 		};
 		
@@ -70,10 +70,10 @@ public class MemberDao {
 		
 		if(r>0) {
 			conn.commit();
-			str = vo.getmId()+"ȸ������ ���������� �߰��Ǿ����ϴ�.";
+			str = vo.getmId()+"회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌩곤옙占실억옙占쏙옙占싹댐옙.";
 		}else {
 			conn.rollback();
-			str = "�����߻�";
+			str = "占쏙옙占쏙옙占쌩삼옙";
 		}
 		
 		ps.close();
@@ -103,10 +103,10 @@ public class MemberDao {
 		
 		if(r>0) {
 			conn.commit();
-			str = vo.getmId()+"ȸ������ ���������� �߰��Ǿ����ϴ�.";
+			str = vo.getmId()+"님이 추가되었습니다.";
 		}else {
 			conn.rollback();
-			str = "�����߻�";
+			str = "DB오류발생";
 		}
 		
 		ps.close();
@@ -129,18 +129,18 @@ public class MemberDao {
 			if(rs.next()) {
 				if(rs.getString(1).equals(vo.getPwd())) {
 					return 1;
-					// ���̵� ��й�ȣ ��ġ
+					// 占쏙옙占싱듸옙 占쏙옙橘占싫� 占쏙옙치
 				}
 				return 0;
-				// ���̵�� ���������� ��ġ���� ����
+				// 占쏙옙占싱듸옙占� 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙치占쏙옙占쏙옙 占쏙옙占쏙옙
 			}
 			return -1;
-			// ���̵� �������� ����
+			// 占쏙옙占싱듸옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		return -2;
-		//DB ����
+		//DB 占쏙옙占쏙옙
 	}
 	
 	public List<MemberVo2> listAll(String mId) {
@@ -155,7 +155,6 @@ public class MemberDao {
 				MemberVo2 vo = new MemberVo2(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 				list.add(vo);
 			}
-			System.out.println(list);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

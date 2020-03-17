@@ -2,14 +2,17 @@ package bean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import member.MemberPhoto;
 
 public class MemberVo {
 	String mId; // pk
 	String mName; // not null
-	Date rDate; // ÀÔÇÐÀÏ not null
-	int grade; // ÇÐ³â (check)
+	Date rDate; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ not null
+	int grade; // ï¿½Ð³ï¿½ (check)
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
- 
+
 	public MemberVo() {
 	}
 
