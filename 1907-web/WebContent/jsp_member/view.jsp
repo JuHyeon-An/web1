@@ -11,12 +11,25 @@
 <body>
 <div class='container'>
 <h3>Member view</h3>
-<form id="frm" name="frm" method="post" class="form-group">
-<label>아이디</label><input type="text" name="mId" class="form-control" readonly/><br/>
-<label>이름</label><input type="text" name="mName" class="form-control" readonly/><br/>
-<label>날짜</label><input type="date" name="rDate" class="form-control" readonly/><br/>
-<label>학년</label><input type="date" name="rDate" class="form-control" readonly/><br/>
-<label>사진 </label><br/><input type="file" name="oriFile" readonly/><br/>
+<form name="frm" id="frm" class="form-group" method="post">
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="col-lg-6">
+<input type="text" name="mId" class="form-control" placeholder="아이디" readonly/><br/>
+<input type="text" name="mName" class="form-control" placeholder="이름" readonly/><br/>
+<input type="date" name="rDate" class="form-control" placeholder="날짜" readonly/><br/>
+<select name="grade" class="form-control">
+	<option value="1" selected disabled>1학년</option>
+	<option value="2" disabled>2학년</option>
+	<option value="3" disabled>3학년</option>
+	<option value="4" disabled>4학년</option>
+</select><br/>
+<input type="file" name="oriFile" id="btnFile"><br/>
+</div>
+<div class="col-sm-2" style="margin-top:50px;">
+<img src='http://placehold.it/150x180' id='photo' name='photo' width='150px' height='180px'/>
+</div>
+</div>
 <hr/>
 <input type="button" id="btnModify" class="btn btn-dark" value="수정"/>
 <input type="button" id="btnDelete" class="btn btn-dark" value="삭제"/>

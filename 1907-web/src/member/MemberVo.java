@@ -6,8 +6,9 @@ import java.util.List;
 
 public class MemberVo {
 	String mId; // pk
+	String pwd;
 	String mName; // not null
-	Date rDate; // ������ not null
+	String rDate; // ������ not null
 	int grade; // �г� (check)
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	List<MemberPhoto> photos;
@@ -16,12 +17,12 @@ public class MemberVo {
 	public MemberVo() {
 	}
 
-	public MemberVo(String id, String name, Date d, int g, List<MemberPhoto> photos) {
+	public MemberVo(String id, String pwd, String name, String d, int g) {
 		this.mId = id;
 		this.mName = name;
 		this.rDate = d;
 		this.grade = g;
-		this.photos = photos;
+		this.pwd = pwd;
 	}
 
 	String pattern = "{'mId' : '%s' , 'mName' : '%s' , 'rDate': '%s', 'grade' : '%s'}";
@@ -56,11 +57,11 @@ public class MemberVo {
 		this.mName = mName;
 	}
 
-	public Date getrDate() {
+	public String getrDate() {
 		return rDate;
 	}
 
-	public void setrDate(Date rDate) {
+	public void setrDate(String rDate) {
 		this.rDate = rDate;
 	}
 
@@ -78,5 +79,13 @@ public class MemberVo {
 
 	public void setPhotos(List<MemberPhoto> photos) {
 		this.photos = photos;
+	}
+	
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 }

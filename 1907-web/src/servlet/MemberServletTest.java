@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.MemberDao;
+import member.FileUpload;
+import member.MemberPhoto;
+import member.MemberVo;
+
+
 @WebServlet("*.cc")
 public class MemberServletTest extends HttpServlet{
 	String url = "index.jsp?inc=./jsp_member/index_jsp_member.jsp&cont=./jsp_member";
-
+	String findStr = "";
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
@@ -56,13 +64,50 @@ public class MemberServletTest extends HttpServlet{
 	}
 
 	public void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		String path = url + "/insert.jsp";
+		findStr = req.getParameter("findStr");
+		System.out.println(findStr);
+		// select 페이지에서 넘겨준 검색어 findStr을 request를 통해서 가져옴
+		//String path = url + "/insert.jsp";
+		String path = url + "/insert.jsp?findStr="+findStr;
+				// => get 타입으로.
+		// get 타입으로 보내줬을 경우에는 폼에서 받을 때 ${findStr} 아니고 ${param.findStr}해줘야돼
 		RequestDispatcher rd = req.getRequestDispatcher(path);
+		//req.setAttribute("findStr", findStr);
 		rd.forward(req, resp);
 	}
 	
 	public void insertR(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String path = url + "/insert_result.jsp";
+		FileUpload upload = new FileUpload(req, resp);
+		
+		if(upload.uploadFormCheck()) { // enctype = 'multipart/form-data'
+			MemberVo vo = upload.uploading();
+			List<MemberPhoto> list = vo.getPhotos();
+			// 일반 폼들은 객체 vo에 담겨질 것이고 사진은 list에
+			
+			MemberDao dao = new MemberDao();
+			String msg = dao.insert(vo);
+			req.setAttribute("msg", msg);
+			
+			/*
+			System.out.println("mName = "+vo.getmName());
+			System.out.println("pwd = "+vo.getPwd());
+			System.out.println("mId = "+vo.getmId());
+			System.out.println("rDate = "+vo.getrDate());
+			System.out.println("grade = "+vo.getGrade());
+			*/
+			
+			for(MemberPhoto p : list) {
+				/*
+				System.out.println("ori = "+p.getOriFile());
+				System.out.println("sys = "+p.getSysFile());
+				*/
+			}
+		}else {
+			System.out.println("error");
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
+		
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
 	}
@@ -92,6 +137,8 @@ public class MemberServletTest extends HttpServlet{
 	}
 	
 	public void select(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		//findStr = req.getParameter("findStr");
+		//req.setAttribute("findStr", findStr);
 		String path = url + "/select.jsp";
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);

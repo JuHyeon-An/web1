@@ -9,6 +9,14 @@ public class MemberPhoto {
 	String oriFile;
 	String sysFile;
 	
+	MemberPhoto(){
+	}
+	
+	MemberPhoto(String ori, String sys){
+		this.oriFile = ori;
+		this.sysFile = sys;
+	}
+	
 	public int getSerial() {
 		return serial;
 	}

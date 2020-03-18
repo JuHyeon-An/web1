@@ -11,7 +11,7 @@
 <link rel='stylesheet' type='text/css'
       href='./css/bootstrap.css'/>
 <script src='./lib/jquery-3.4.1.js'></script>
-<script src='./jsp_member/member.js'></script>
+<script type='text/javascript' src='./jsp_member/member.js'></script>
 <script src='./js.bootstrap.js'></script>
 
 
