@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>view</title>
-<link rel='stylesheet' type='text/css'
-      href='../css/bootstrap.css'/>
 </head>
 <body>
 <div class='container'>
@@ -15,9 +14,9 @@
 <div class="row">
 <div class="col-lg-1"></div>
 <div class="col-lg-6">
-<input type="text" name="mId" class="form-control" placeholder="아이디" readonly/><br/>
-<input type="text" name="mName" class="form-control" placeholder="이름" readonly/><br/>
-<input type="date" name="rDate" class="form-control" placeholder="날짜" readonly/><br/>
+<input type="text" name="mId" class="form-control" placeholder="아이디" value="${mId }" readonly/><br/>
+<input type="text" name="mName" class="form-control" placeholder="이름" value="${mName }" readonly/><br/>
+<input type="date" name="rDate" class="form-control" placeholder="날짜" value="${rDate }" readonly/><br/>
 <select name="grade" class="form-control">
 	<option value="1" selected disabled>1학년</option>
 	<option value="2" disabled>2학년</option>

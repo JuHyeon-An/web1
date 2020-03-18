@@ -86,6 +86,9 @@ function btnFunc(){
 	}
 	*/
 
-function view(){
-	$('#frm').attr('action', 'deleteR.cc').submit();
+function view(mId){
+	console.log(mId);
+	$('#mId').val(mId);
+	console.log($('#mId').val());
+	$('#frm').attr('action', 'view.cc').submit();
 }

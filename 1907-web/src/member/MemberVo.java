@@ -17,12 +17,11 @@ public class MemberVo {
 	public MemberVo() {
 	}
 
-	public MemberVo(String id, String pwd, String name, String d, int g) {
+	public MemberVo(String id, String name, String d, int g) {
 		this.mId = id;
 		this.mName = name;
 		this.rDate = d;
 		this.grade = g;
-		this.pwd = pwd;
 	}
 
 	String pattern = "{'mId' : '%s' , 'mName' : '%s' , 'rDate': '%s', 'grade' : '%s'}";

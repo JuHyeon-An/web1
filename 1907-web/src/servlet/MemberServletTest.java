@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -30,7 +31,6 @@ public class MemberServletTest extends HttpServlet{
 		String temp = req.getRequestURI();
 		int pos = temp.lastIndexOf("/");
 		String tempUrl = temp.substring(pos);
-		System.out.println(url + tempUrl);
 		
 		switch(tempUrl) {
 		case "/insert.cc":
@@ -65,7 +65,6 @@ public class MemberServletTest extends HttpServlet{
 
 	public void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		findStr = req.getParameter("findStr");
-		System.out.println(findStr);
 		// select 페이지에서 넘겨준 검색어 findStr을 request를 통해서 가져옴
 		//String path = url + "/insert.jsp";
 		String path = url + "/insert.jsp?findStr="+findStr;
@@ -125,7 +124,17 @@ public class MemberServletTest extends HttpServlet{
 	}
 	
 	public void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		MemberDao dao = new MemberDao();
+		MemberVo vo = new MemberVo();
+		vo = dao.view(req.getParameter("mId"));
+		System.out.println(req.getParameter("mId"));
+		req.setAttribute("mId", vo.getmId());
+		req.setAttribute("mName", vo.getmName());
+		req.setAttribute("rDate", vo.getrDate());
+		req.setAttribute("grade", vo.getGrade());
+		
 		String path = url + "/view.jsp";
+		
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
 	}
@@ -137,8 +146,14 @@ public class MemberServletTest extends HttpServlet{
 	}
 	
 	public void select(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		//findStr = req.getParameter("findStr");
+		findStr = req.getParameter("findStr");
+		System.out.println(findStr);
 		//req.setAttribute("findStr", findStr);
+		MemberDao dao = new MemberDao();
+		List<MemberVo> list = dao.select(findStr);
+		System.out.println(list.get(0).getmId());
+		req.setAttribute("list", list);
+		
 		String path = url + "/select.jsp";
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);

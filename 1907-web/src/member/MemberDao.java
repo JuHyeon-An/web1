@@ -135,11 +135,12 @@ public class MemberDao {
 	public List<MemberVo> select(String findStr){
 		List<MemberVo> list = new ArrayList<MemberVo>();
 		
-		String sql = "select mId, mName, rDate, grade from member2 where mId like ? or mName like ?";
+		String sql = "select mId, mName, to_char(rDate, 'rrrr-mm-dd'), grade from member2 where mId like ? or mName like ?";
 		try {
 			conn = DBConn.getConn();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, findStr);
+			ps.setString(1, "%"+findStr+"%");
+			ps.setString(2, "%"+findStr+"%");
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
