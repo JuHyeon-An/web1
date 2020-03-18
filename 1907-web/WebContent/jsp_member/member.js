@@ -86,3 +86,6 @@ function btnFunc(){
 	}
 	*/
 
+function view(){
+	$('#frm').attr('action', 'deleteR.cc').submit();
+}

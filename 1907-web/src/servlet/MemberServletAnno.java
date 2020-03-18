@@ -40,6 +40,9 @@ public class MemberServletAnno extends HttpServlet{
 		ServletContext cont = getServletContext();
 		RequestDispatcher disp = cont.getRequestDispatcher(path);
 		request.setAttribute("msg", msg);
-		disp.forward(request, resp); 
+		//메시지를 저장하고
+		disp.forward(request, resp);
+		// 요청정보, 응답정보와 함께 forward
+		
 	}
 }
