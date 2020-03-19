@@ -14,11 +14,12 @@ public class MemberDao {
 	Connection conn;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	String upload = "c:/Users/JHTA/git/web1/1907-web/WebContent/upload/";
+	String sql="";
 	
 	public String insert(MemberVo vo) {
 	int r = 0;
 	String str = "";
-	String sql = "insert into member2(mId, mName, rDate, grade, pwd) values(?, ?, ?, ?, ?)";
+	sql = "insert into member2(mId, mName, rDate, grade, pwd) values(?, ?, ?, ?, ?)";
 	MemberPhoto p = null;
 	
 	List<MemberPhoto> list = vo.getPhotos();
@@ -84,12 +85,13 @@ public class MemberDao {
 	
 	public String modify(MemberVo vo) {
 		int r = 0;
-		String sql = "update member2 set mName=?, rDate=?, grade=?, pwd=? where mId=?";
+		
+		sql = "update member2 set mName=?, rDate=?, grade=?, pwd=? where mId=?";
 		try {
 			conn = DBConn.getConn();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getmName());
-			ps.setString(2, sdf.format(vo.getrDate()));
+			ps.setString(2, vo.getrDate());
 			ps.setInt(3, vo.getGrade());
 			ps.setString(4, vo.getPwd());
 			ps.setString(5, vo.getmId());
@@ -111,51 +113,102 @@ public class MemberDao {
 	
 	public MemberVo view(String mId) {
 		MemberVo vo = new MemberVo();
-		String sql = "select mName, rDate, grade from member2 where mId=?";
+		List<MemberPhoto> list = new ArrayList<MemberPhoto>();
+		String sql = "select mName, to_char(m.rDate, 'rrrr-mm-dd') rDate, grade, orifile, sysfile, pwd "+ 
+				"from member2 m left outer join member_photo p " + 
+				"on m.mId = p.mId " + 
+				"where m.mId = ?";
+		
 		try {
 			conn = DBConn.getConn();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, mId);
 			
 			ResultSet rs = ps.executeQuery();
+			
 			if(rs.next()) {
 				vo.setmId(mId);
 				vo.setmName(rs.getString(1));
 				vo.setrDate(rs.getString(2));
 				vo.setGrade(rs.getInt(3));
-				
-				return vo;
+				vo.setPwd(rs.getString(6));
+				list.add(new MemberPhoto(rs.getString(4), rs.getString(5)));
+				vo.setPhotos(list);
+				conn.commit();
+				ps.close();
 			}
 		}catch(Exception ex) {
+			conn.rollback();
 			ex.printStackTrace();
+		}finally {
+			return vo;
 		}
-		return null;
 	}
 	
-	public List<MemberVo> select(String findStr){
-		List<MemberVo> list = new ArrayList<MemberVo>();
+	public List<MemberVo> select(Page p){
 		
-		String sql = "select mId, mName, to_char(rDate, 'rrrr-mm-dd'), grade from member2 where mId like ? or mName like ?";
+		List<MemberVo> list = new ArrayList<MemberVo>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		conn = DBConn.getConn();
+		int totList = 0;
+		
 		try {
-			conn = DBConn.getConn();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, "%"+findStr+"%");
-			ps.setString(2, "%"+findStr+"%");
+			// 전체 건수
+			sql = "select count(mId) cnt from member where mId like ? or mName like ?";
+					
+					
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+p.getFindStr()+"%");
+			ps.setString(2, "%"+p.getFindStr()+"%");
 			
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				totList = rs.getInt(1);
+			}
+			p.setTotListSize(totList);
+			p.pageCompute();
+			
+			System.out.println("totListSize : "+p.getTotListSize());
+			System.out.println("startPage : "+p.getStartPage());
+			System.out.println("endPage : "+p.getEndPage());
+			System.out.println("startNo : "+p.getStartNo());
+			System.out.println("endNo : "+p.getEndNo());
+			
+			sql = "select * from "
+					+ "(select rownum rn, A.* from "
+					+ "(select mId, pwd, mName, to_char(rDate, 'rrrr-mm-dd') rDate, grade from member2 "
+					+ "where mId like ? or mName like ? "
+					+ "order by mName)A )"
+					+ " where rn between ? and ?";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+p.getFindStr()+"%");
+			ps.setString(2, "%"+p.getFindStr()+"%");
+			ps.setInt(3, p.getStartNo());
+			ps.setInt(4, p.getEndNo());
+			
+			rs = ps.executeQuery();
+			
 			while(rs.next()) {
 				MemberVo vo = new MemberVo();
-				vo.setmId(rs.getString(1));
-				vo.setmName(rs.getString(2));
-				vo.setrDate(rs.getString(3));
-				vo.setGrade(rs.getInt(4));
+				vo.setmId(rs.getString("mId"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setmName(rs.getString("mName"));
+				vo.setrDate(rs.getString("rDate"));
+				vo.setGrade(rs.getInt("grade"));
 				
 				list.add(vo);
 			}
+			
+			ps.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
+		}finally {
+			return list;
 		}
-		return list;
+		
 	}
 	
 	public String insertVo2(MemberVo vo) {
@@ -163,7 +216,7 @@ public class MemberDao {
 	String str = "";
 	try {
 		conn = DBConn.getConn();
-		String sql = "insert into member values (?, ?, ?, ?)";
+		sql = "insert into member values (?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, vo.getmId());
 		ps.setString(2, vo.getmName());
@@ -192,7 +245,7 @@ public class MemberDao {
 	}
 	
 	public int login(MemberVo vo) {
-		String sql = "select pwd from member2 where mId=?";
+		sql = "select pwd from member2 where mId=?";
 		try {
 			conn = DBConn.getConn();
 			PreparedStatement ps = conn.prepareStatement(sql);

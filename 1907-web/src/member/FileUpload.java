@@ -94,13 +94,18 @@ public class FileUpload {
 					case "findStr":
 						// 폼태그 이름이 findStr이면 value값을 attribute에 저장
 						req.setAttribute("findStr", v);
+						break;
+						
+					case "nowPage":
+						req.setAttribute("nowPage", v);
+						break;
+						
 					default:
 						break;
 					}
 				}else { // <input type='file'/>인 경우
 					if(fi.getSize()>0) {
 						// file 태그가 여러개가 있다면 n번 돌게 될 것
-						
 						
 						// file사이즈가 0이라면 파일이 넘어오지 않은 것
 						// 파일을 선택하지 않고 등록버튼을 누른 경우 파일사이즈가 0

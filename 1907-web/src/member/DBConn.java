@@ -10,7 +10,7 @@ public class DBConn {
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String dbUser = "member";
+		String dbUser = "park";
 		String dbPwd = "1234";
 		
 		Connection conn = null;

@@ -12,6 +12,8 @@ public class Page {
 	int endPage;
 	String findStr = "";
 	
+	public Page() {}
+	
 	public Page(int tot, int now) {
 		this.totListSize = tot;
 		this.nowPage = now;
@@ -25,11 +27,13 @@ public class Page {
 		// 전체 게시글의 수를 10개씩 나눴을 때, 소수점 올리고 int로 형변환
 		
 		endNo = nowPage*listSize; // 1일때는 10까지, 2일때는 20까지...
-		startNo = endNo-(listSize+1);
+		startNo = endNo-listSize+1;
+		//startNo = endNo-(listSize+1);
 		if(endNo>totListSize) endNo = totListSize;
 		// endNo가 전체 게시글 건수보다 크면 같도록 만들어준다
 
-		endPage = ((int)Math.ceil(nowPage/(double)blockSize))*blockSize;
+		endPage = (int)Math.ceil(nowPage/(double)blockSize)*blockSize;
+		//endPage = ((int)Math.ceil(nowPage/(double)blockSize))*blockSize;
 		startPage = endPage-blockSize+1;
 		
 		if(endPage>totPage) endPage = totPage;
@@ -85,5 +89,22 @@ public class Page {
 	public void setBlockSize(int blockSize) {
 		this.blockSize = blockSize;
 	}
+
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	
 	
 }

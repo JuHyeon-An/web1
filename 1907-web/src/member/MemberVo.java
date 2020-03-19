@@ -17,21 +17,16 @@ public class MemberVo {
 	public MemberVo() {
 	}
 
-	public MemberVo(String id, String name, String d, int g) {
+	public MemberVo(String id, String name, String d, int g, String pwd) {
 		this.mId = id;
 		this.mName = name;
 		this.rDate = d;
 		this.grade = g;
+		this.pwd = pwd;
 	}
 
 	String pattern = "{'mId' : '%s' , 'mName' : '%s' , 'rDate': '%s', 'grade' : '%s'}";
 
-	public String toString() {
-		String d = sdf.format(rDate);
-		String str = String.format("%10s\t%15s\t%15s\t%4d\n", mId, mName, d, grade);
-
-		return str;
-	}
 	
 	public String toJSON() {
 		String d = sdf.format(rDate);

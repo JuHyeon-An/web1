@@ -1,9 +1,18 @@
+let upload = "c:/Users/JHTA/git/web1/1907-web/WebContent/upload/";
+
 function btnFunc(){
 	
 	if($('#btnList')!=null){
 		$('#btnList').click(function(){
 			$('#frm').removeAttr('enctype');
 			// enctype 속성을 없애고 select로 이동
+			$('#frm').attr('action', 'select.cc').submit();
+		})
+	}
+	
+	if($('#btnFind')!=null){
+		$('#btnFind').click(function(){
+			$('#nowPage').val('');
 			$('#frm').attr('action', 'select.cc').submit();
 		})
 	}
@@ -34,6 +43,10 @@ function btnFunc(){
 
 	if($('#btnUpdate')!=null){
 		$('#btnUpdate').click(function(){
+			if($('#ifChanged').val()!=1){
+				alert("변경안됨");
+				$('#frm').removeAttr('enctype');
+			}
 			$('#frm').attr('action', 'modifyR.cc').submit();
 		})
 	}
@@ -58,6 +71,7 @@ function btnFunc(){
 		}
 	}
 	
+
 	/*
 	if($('#btnFile')!=null){
 		frm.oriFile.onchange = function(e){
@@ -91,4 +105,14 @@ function view(mId){
 	$('#mId').val(mId);
 	console.log($('#mId').val());
 	$('#frm').attr('action', 'view.cc').submit();
+}
+
+let goPage = function(nowPage){
+	$('#nowPage').val(nowPage);
+	$('#frm').attr('action', 'select.cc').submit();
+}
+
+let fileChanged = function(){
+	$('#ifChanged').val(1);
+	// 파일이 변경되면 1
 }

@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert</title>
-<link rel='stylesheet' type='text/css'
-      href='../css/bootstrap.css'/>
-<script src = "../lib/jquery.3.4.1.js"></script>
 </head>
 <body>
 <div class='container'>
@@ -39,6 +36,7 @@
 <input type="button" id="btnInsert" class="btn btn-dark" value="등록"/>
 <input type="button" id="btnList" class="btn btn-dark" value="돌아가기"/>
 <input type="text" name="findStr" value="${param.findStr }"/>
+<input type="text" name="nowPage" value="${param.nowPage }"/>
 </form>
 </div>
 </body>
