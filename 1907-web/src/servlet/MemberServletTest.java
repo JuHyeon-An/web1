@@ -71,9 +71,9 @@ public class MemberServletTest extends HttpServlet{
 		
 		findStr = req.getParameter("findStr");
 		// select 페이지에서 넘겨준 검색어 findStr을 request를 통해서 가져옴
-		//String path = url + "/insert.jsp";
 		String path = url + "/insert.jsp?findStr="+findStr;
 				// => get 타입으로.
+		
 		// get 타입으로 보내줬을 경우에는 폼에서 받을 때 ${findStr} 아니고 ${param.findStr}해줘야돼
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		//req.setAttribute("findStr", findStr);
@@ -89,13 +89,16 @@ public class MemberServletTest extends HttpServlet{
 		
 		if(upload.uploadFormCheck()) { // enctype = 'multipart/form-data'
 			MemberVo vo = upload.uploading();
+			// 사진을 포함해서 모든 폼태그가 담겨진 vo가 반환
+			
 			List<MemberPhoto> list = vo.getPhotos();
 			// 일반 폼들은 객체 vo에 담겨질 것이고 사진은 list에
 			
 			MemberDao dao = new MemberDao();
 			String msg = dao.insert(vo);
-			req.setAttribute("msg", msg);
+			// 폼태그 담은 vo를 실제로 DB에 넣어줌
 			
+			req.setAttribute("msg", msg);
 			
 			for(MemberPhoto p : list) {
 				/*
@@ -108,6 +111,7 @@ public class MemberServletTest extends HttpServlet{
 			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 		path += "?nowPage="+req.getAttribute("nowPage");
+		// get타입으로 보내줌
 		
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
@@ -132,21 +136,41 @@ public class MemberServletTest extends HttpServlet{
 	}
 	
 	public void modifyR(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8");
+		
 		MemberVo vo = new MemberVo();
-		vo.setmId(req.getParameter("mId"));
-		vo.setmName(req.getParameter("mName"));
-		vo.setrDate(req.getParameter("rDate"));
-		vo.setGrade(Integer.parseInt(req.getParameter("grade")));
-		vo.setPwd(req.getParameter("pwd"));
+		if(req.getParameter("isChanged")!=null) {
+			String isChanged = req.getParameter("isChanged");
+			System.out.println("isChanged의 값 "+isChanged);
+				// 1이면 사진이 올라간 것이고, 아니면 사진은 변경하지 않은 것.
+				// 1이 아니라면 = 사진을 변경하지 않았다면 => 일반 getParameter로 받아야함
+				vo.setmId(req.getParameter("mId"));
+				vo.setmName(req.getParameter("mName"));
+				vo.setrDate(req.getParameter("rDate"));
+				vo.setGrade(Integer.parseInt(req.getParameter("grade")));
+				vo.setPwd(req.getParameter("pwd"));
+			}else { // isChanged가 null로 들어온 경우 = enctype때문에 (사진등록되는경우)
+				FileUpload upload = new FileUpload(req, resp);
+				if(upload.uploadFormCheck()) {
+					vo = upload.uploading();
+					List<MemberPhoto> mp = vo.getPhotos();
+					
+				}else {
+					System.out.println("error");
+					resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				}
+		}
 		
 		MemberDao dao = new MemberDao();
 		String msg = dao.modify(vo);
-		
 		req.setAttribute("msg", msg);
 		
 		String path = url + "/modify_result.jsp";
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
+		
+		
 	}
 	
 	public void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -156,14 +180,13 @@ public class MemberServletTest extends HttpServlet{
 		MemberDao dao = new MemberDao();
 		System.out.println(req.getParameter("mId"));
 		MemberVo vo = dao.view(req.getParameter("mId"));
-		/*
-		req.setAttribute("mId", vo.getmId());
-		req.setAttribute("mName", vo.getmName());
-		req.setAttribute("rDate", vo.getrDate());
-		req.setAttribute("grade", vo.getGrade());
-		*/
+		//Dao에서 mId가지고 vo만들어서 전달해줌
+		String photo = null;
 		
-		String photo = vo.getPhotos().get(0).getSysFile();
+		if(vo.getPhotos()!=null) {
+			photo = vo.getPhotos().get(0).getSysFile();
+		}
+		
 		System.out.println(photo);
 		req.setAttribute("photo", photo);
 		req.setAttribute("vo", vo);
@@ -174,6 +197,13 @@ public class MemberServletTest extends HttpServlet{
 	}
 	
 	public void deleteR(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8");
+		
+		MemberDao dao = new MemberDao();
+		String msg = dao.delete(req.getParameter("mId"), req.getParameter("pwd"), req.getParameter("isChanged"));
+		
+		req.setAttribute("msg", msg);
 		String path = url + "/delete_result.jsp";
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);

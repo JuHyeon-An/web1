@@ -30,8 +30,7 @@
 </div>
 </div>
 <hr/>
-<input type="button" id="btnModify" class="btn btn-dark" value="수정"/>
-<input type="button" id="btnDelete" class="btn btn-dark" value="삭제"/>
+<input type="button" id="btnModify" class="btn btn-dark" value="편집"/>
 <input type="button" id="btnList" class="btn btn-dark" value="목록으로"/>
 <input type="hidden" id="findStr" name="findStr" value="${param.findStr }"/>
 <input type="hidden" id="nowPage" name="nowPage" value="${param.nowPage }"/>

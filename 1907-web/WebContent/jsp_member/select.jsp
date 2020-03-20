@@ -12,8 +12,8 @@
 
 <div class="container text-right">
 <form id="frm" name="frm" method="post">
-<input type="text" name="findStr" id="findStr'placeholder="검색어를 입력하세요." value="${param.findStr }"/>
-<input type="button" name="btnFind" id="btnFind" value="검색" class="btn btn-dark"/>
+<input type="text" name="findStr" id="findStr" value="${param.findStr }" placeholder="아이디 혹은 이름으로 검색" />
+<input type="submit" name="btnFind" id="btnFind" value="검색" class="btn btn-dark"/>
 <input type="button" id="btnGoInsert" value="추가" class="btn btn-dark"/>
 <input type="text" name="nowPage" id="nowPage" value="${empty param.nowPage? 1 : param.nowPage }"/>
 <input type="text" id = "mId" name="mId"/>

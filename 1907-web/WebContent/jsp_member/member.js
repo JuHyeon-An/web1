@@ -6,6 +6,7 @@ function btnFunc(){
 		$('#btnList').click(function(){
 			$('#frm').removeAttr('enctype');
 			// enctype 속성을 없애고 select로 이동
+			// 폼태그에 있는 값을 전달해줘야되는데 enctype이 있으면 null값으로 들어감.
 			$('#frm').attr('action', 'select.cc').submit();
 		})
 	}
@@ -37,22 +38,43 @@ function btnFunc(){
 
 	if($('#btnDelete')!=null){
 		$('#btnDelete').click(function(){
-			$('#frm').attr('action', 'deleteR.cc').submit();
+			let result = prompt('비밀번호를 입력하세요.');
+			if(result==frm.pwd.value){
+				$('#frm').removeAttr('enctype');
+				$('#isChanged').val('del');
+				$('#frm').attr('action', 'deleteR.cc').submit();
+			}else{
+				alert('비밀번호를 다시 확인하세요');
+			}
+		})
+	}
+	
+	if($('#btnFileDel')!=null){ //파일만 삭제할때
+		$('#btnFileDel').click(function(){
+			let result = prompt('비밀번호를 입력하세요.');
+			if(result==frm.pwd.value){
+				$('#frm').removeAttr('enctype');
+				$('#frm').attr('action', 'deleteR.cc').submit();
+			}else{
+				alert('비밀번호를 다시 확인하세요');
+			}
 		})
 	}
 
 	if($('#btnUpdate')!=null){
 		$('#btnUpdate').click(function(){
-			if($('#ifChanged').val()!=1){
-				alert("변경안됨");
-				$('#frm').removeAttr('enctype');
+			if($('#isChanged').val()!='1'){
+				$('#frm').removeAttr('enctype'); // 사진은 수정하지 않으니까 enctype없앰
 			}
 			$('#frm').attr('action', 'modifyR.cc').submit();
+			//enctype 이 있으면 따로 지정해주지 않는 이상 폼태그 값은 null
 		})
 	}
 
 	if($('#btnFile')!=null){
 		$('#btnFile').change(function(e){
+			$('#isChanged').val("1");
+			
 			let ele = e.target; //event.srcElement : 순수 자바스크립트 코드로 처리했을 때.
 			let url = ele.files[0];
 			// 이벤트가 발생한 파일의 경로
@@ -110,9 +132,4 @@ function view(mId){
 let goPage = function(nowPage){
 	$('#nowPage').val(nowPage);
 	$('#frm').attr('action', 'select.cc').submit();
-}
-
-let fileChanged = function(){
-	$('#ifChanged').val(1);
-	// 파일이 변경되면 1
 }

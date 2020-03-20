@@ -15,7 +15,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class FileUpload {
 	// 파일 업로드하는 고유한 기능 갖도록
 	
-	String upload = "c:/Users/JHTA/git/web1/1907-web/WebContent/upload/";
+//	String upload = "c:/Users/JHTA/git/web1/1907-web/WebContent/upload/";
+	String upload = "c:/Users/Ellen/git/web1/1907-web/WebContent/upload/";
 	// 업로드되는 경로명
 	String tempDir = "c:/temp/";
 	// 파일이 전송되는 중간 중간 저장되는 장소
@@ -67,9 +68,14 @@ public class FileUpload {
 				String k = fi.getFieldName();
 				// input 태그의 name값 : getFieldName
 				
+				// v 는  value, k는 name
+				
+				/* 폼태그에 들어가있는 인풋 태그를 모두 파싱해서 리스트에 넣고, 하나하나 꺼내서
+				 * value값과 name값을 각각 v와  k에 담는다 
+				 */
 				if(fi.isFormField()) {
-					// input타입이 파일이 아닌가?
-					switch (k) {
+					// input타입이 파일이 아닌가? => else(파일인경우)
+					switch (k) { // name값을 가져와서
 					case "mId": //<input type="text" name="mId"/>
 					// input 상자의 name값이 mId면 v값을 vo의 mId에 집어넣어라
 						vo.setmId(v);
@@ -99,7 +105,7 @@ public class FileUpload {
 					case "nowPage":
 						req.setAttribute("nowPage", v);
 						break;
-						
+					
 					default:
 						break;
 					}
