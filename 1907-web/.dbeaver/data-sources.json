@@ -1,0 +1,53 @@
+{
+	"folders": {},
+	"connections": {
+		"oracle_thin-171000828ef-2542ee4bcc24c516": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "Oracle - xe",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "xe",
+				"url": "jdbc:oracle:thin:@//localhost:1521/xe",
+				"home": "C:\\oraclexe\\app\\oracle\\product\\11.2.0\\server",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-sid-service@": "SERVICE",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-always-show-dba@": "false"
+				},
+				"handlers": {}
+			}
+		}
+	},
+	"virtual-models": {
+		"oracle_thin-171000828ef-2542ee4bcc24c516": {
+			"STARBUCKS": {
+				"@properties": {
+					"erd.diagram.state": {
+						"serialized": "<diagram version=\"1\" name=\"STARBUCKS\" time=\"202003221658\"><entities><data-source id=\"oracle_thin-171000828ef-2542ee4bcc24c516\"><entity id=\"1\" name=\"ITEMBOARD\" fq-name=\"STARBUCKS.ITEMBOARD\" order=\"0\" x=\"117\" y=\"424\"><path name=\"STARBUCKS\"/></entity><entity id=\"2\" name=\"NOTICEBOARD\" fq-name=\"STARBUCKS.NOTICEBOARD\" order=\"1\" x=\"888\" y=\"39\"><path name=\"STARBUCKS\"/></entity><entity id=\"3\" name=\"QUESTIONBOARD\" fq-name=\"STARBUCKS.QUESTIONBOARD\" order=\"2\" x=\"894\" y=\"348\"><path name=\"STARBUCKS\"/></entity><entity id=\"4\" name=\"REVIEWBOARD\" fq-name=\"STARBUCKS.REVIEWBOARD\" order=\"3\" x=\"564\" y=\"553\"><path name=\"STARBUCKS\"/></entity><entity id=\"5\" name=\"SHOPPINGBASKET\" fq-name=\"STARBUCKS.SHOPPINGBASKET\" order=\"4\" border-width=\"3\" x=\"570\" y=\"16\"><path name=\"STARBUCKS\"/></entity><entity id=\"6\" name=\"SHOPPING_MEMBER\" fq-name=\"STARBUCKS.SHOPPING_MEMBER\" order=\"5\" x=\"538\" y=\"257\"><path name=\"STARBUCKS\"/></entity><entity id=\"7\" name=\"SHOPPING_ORDER\" fq-name=\"STARBUCKS.SHOPPING_ORDER\" order=\"6\" x=\"141\" y=\"47\"><path name=\"STARBUCKS\"/></entity></data-source></entities><relations><relation name=\"RIVIEW_ITEM_CODE_FK\" fq-name=\"STARBUCKS.REVIEWBOARD.RIVIEW_ITEM_CODE_FK\" type=\"fk\" pk-ref=\"1\" fk-ref=\"4\"/><relation name=\"ITEM_CODE\" fq-name=\"STARBUCKS.SHOPPINGBASKET.ITEM_CODE\" type=\"fk\" pk-ref=\"1\" fk-ref=\"5\"/><relation name=\"ORDER_ITEM_CODE_FK\" fq-name=\"STARBUCKS.SHOPPING_ORDER.ORDER_ITEM_CODE_FK\" type=\"fk\" pk-ref=\"1\" fk-ref=\"7\"/><relation name=\"NOTICE_MEMBER_ID_FK\" fq-name=\"STARBUCKS.NOTICEBOARD.NOTICE_MEMBER_ID_FK\" type=\"fk\" pk-ref=\"6\" fk-ref=\"2\"/><relation name=\"QUESTION_MEMBER_ID_FK\" fq-name=\"STARBUCKS.QUESTIONBOARD.QUESTION_MEMBER_ID_FK\" type=\"fk\" pk-ref=\"6\" fk-ref=\"3\"/><relation name=\"REVIEW_MEMBER_ID_FK\" fq-name=\"STARBUCKS.REVIEWBOARD.REVIEW_MEMBER_ID_FK\" type=\"fk\" pk-ref=\"6\" fk-ref=\"4\"/><relation name=\"MEMBER_ID\" fq-name=\"STARBUCKS.SHOPPINGBASKET.MEMBER_ID\" type=\"fk\" pk-ref=\"6\" fk-ref=\"5\"/><relation name=\"ORDER_MEMBER_ID_FK\" fq-name=\"STARBUCKS.SHOPPING_ORDER.ORDER_MEMBER_ID_FK\" type=\"fk\" pk-ref=\"6\" fk-ref=\"7\"/></relations></diagram>"
+					}
+				}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}
