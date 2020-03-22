@@ -140,6 +140,7 @@ public class MemberServletTest extends HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");
 		
 		MemberVo vo = new MemberVo();
+		/*
 		if(req.getParameter("isChanged")!=null) {
 			String isChanged = req.getParameter("isChanged");
 			System.out.println("isChanged의 값 "+isChanged);
@@ -150,17 +151,18 @@ public class MemberServletTest extends HttpServlet{
 				vo.setrDate(req.getParameter("rDate"));
 				vo.setGrade(Integer.parseInt(req.getParameter("grade")));
 				vo.setPwd(req.getParameter("pwd"));
-			}else { // isChanged가 null로 들어온 경우 = enctype때문에 (사진등록되는경우)
+			}else {
+			
+			 */// isChanged가 null로 들어온 경우 = enctype때문에 (사진등록되는경우)
 				FileUpload upload = new FileUpload(req, resp);
 				if(upload.uploadFormCheck()) {
 					vo = upload.uploading();
-					List<MemberPhoto> mp = vo.getPhotos();
+					//List<MemberPhoto> mp = vo.getPhotos();
 					
 				}else {
 					System.out.println("error");
 					resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				}
-		}
 		
 		MemberDao dao = new MemberDao();
 		String msg = dao.modify(vo);

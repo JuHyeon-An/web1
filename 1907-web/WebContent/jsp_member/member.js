@@ -63,10 +63,7 @@ function btnFunc(){
 
 	if($('#btnUpdate')!=null){
 		$('#btnUpdate').click(function(){
-			if($('#isChanged').val()!='1'){
-				$('#frm').removeAttr('enctype'); // 사진은 수정하지 않으니까 enctype없앰
-			}
-			$('#frm').attr('action', 'modifyR.cc').submit();
+				$('#frm').attr('action', 'modifyR.cc').submit();
 			//enctype 이 있으면 따로 지정해주지 않는 이상 폼태그 값은 null
 		})
 	}

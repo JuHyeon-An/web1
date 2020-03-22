@@ -106,12 +106,14 @@ public class MemberDao {
 		int serial = 0;
 		List<MemberPhoto> list = vo.getPhotos();//사진정보가 없으면 값이 없을 것이다.
 		
-		if(list.size()>0) { //사진정보가 들어왔다면 (여러개라면 for문)
+		if(list.size()>0) {
+			System.out.println("여기가 실행되면 이상한건데");
 			mp = list.get(0);
 		}
 		
 		try {
 			conn.setAutoCommit(false);
+			System.out.println("mp가 null이겠지"+mp);
 			
 			if(mp!=null) {
 				// 사진정보가 있다면 (신규파일이 들어온 경우)
@@ -137,6 +139,12 @@ public class MemberDao {
 			ps.setInt(3, vo.getGrade());
 			ps.setString(4, vo.getPwd());
 			ps.setString(5, vo.getmId());
+			
+			System.out.println(vo.getmName());
+			System.out.println(vo.getrDate());
+			System.out.println(vo.getGrade());
+			System.out.println(vo.getPwd());
+			System.out.println(vo.getmId());
 			
 			r = ps.executeUpdate();
 			
@@ -186,6 +194,7 @@ public class MemberDao {
 		}catch(Exception ex) {
 			conn.rollback();
 			msg = ex.getMessage();
+			ex.printStackTrace();
 		}finally {
 			if(deleteFile !=null) {
 				delFile(deleteFile);
@@ -307,18 +316,21 @@ public class MemberDao {
 					serial = rs.getInt("serial");
 					deleteFile = rs.getString("sysFile");
 					// 폴더에서 삭제될 아이
-				}
-				
-				// 사진삭제
-				sql = "delete from member_photo where serial=?";
-				
-				ps = conn.prepareStatement(sql);
-				ps.setInt(1, serial);
-				
-				r = ps.executeUpdate();
-				
-				if(r<1) {
-					throw new Exception("사진 삭제 중 오류 발생");
+					
+					// 값이 있으면 사진삭제
+					if(serial!=0) {
+						
+						sql = "delete from member_photo where serial=?";
+						
+						ps = conn.prepareStatement(sql);
+						ps.setInt(1, serial);
+						
+						r = ps.executeUpdate();
+						
+						if(r<1) {
+							throw new Exception("사진 삭제 중 오류 발생");
+						}
+					}
 				}
 				
 				
@@ -334,41 +346,7 @@ public class MemberDao {
 						throw new Exception("기본 정보 삭제 중 오류 발생");
 					}
 				}
-				
-			
-				/*
-						sql = "insert into member_photo(serial, mId, rDate, oriFile, sysFile) "
-								+ "values(seq_member_photo.nextval, ?, ?, ?, ?)";
-					
-					ps = conn.prepareStatement(sql);
-					ps.setString(1, vo.getmId());
-					ps.setString(2, vo.getrDate());
-					ps.setString(3, mp.getOriFile());
-					ps.setString(4, mp.getSysFile());
-					
-					r = ps.executeUpdate();
-					
-					if(r<1) {
-						throw new Exception("사진정보 추가 중 오류");
-					}
-				}else {
-					sql = "update member_photo set rDate=?, oriFile=?, sysFile=? "
-							+ "where serial=?";
-					ps = conn.prepareStatement(sql);
-					
-					ps.setString(1, vo.rDate);
-					ps.setString(2, mp.oriFile);
-					ps.setString(3, mp.sysFile);
-					ps.setInt(4, serial);
-					
-					r = ps.executeUpdate();
-					if(r<1){
-						throw new Exception("사진정보 업데이트 중 오류");
-					}				
-				}
-			}
-			*/
-			msg = mId + " 님이 정상적으로 삭제되었습니다.";
+				msg = mId + " 님이 정상적으로 삭제되었습니다.";
 			conn.commit();
 			ps.close();
 		}catch(Exception ex) {
