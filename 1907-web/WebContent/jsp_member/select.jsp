@@ -47,7 +47,8 @@
   <li class="page-item"><a class="page-link" href="#" onclick='goPage(1)'>Previous</a></li>
 	 </c:if>
 	 <c:forEach var='i' begin='${p.startPage }' end='${p.endPage }'>
-  <li class="page-item"><a class="page-link" href="#" onclick='goPage(${i})'>${i }</a></li>
+  <li class="page-item ${(i==p.nowPage)? 'active' : ''}"><a class="page-link" href="#" 
+  		onclick='goPage(${i})'>${i }</a></li>
 	  </c:forEach>
 	 <c:if test="${p.nowPage < p.totPage }"> 
   <li class="page-item"><a class="page-link" href="#" onclick='goPage(${p.nowPage+1})'>Next</a></li>
