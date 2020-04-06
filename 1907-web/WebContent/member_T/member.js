@@ -86,6 +86,7 @@ let insert = function(){
 				$('#mName').val('');
 				$('#grade').selectedIndex=0;
 				$('#mId').focus();
+				
 				$('#result').addClass('result_ok');
 				// addClass 해서 css지정				
 			}

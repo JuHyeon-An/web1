@@ -84,7 +84,7 @@ function btnFunc(){
 				    let img = new Image();
 				    img.src = ev.target.result;
 					// 실제로 읽혀진 파일
-					$('#photo').attr('src', img.src);
+					$(this).find('img').attr('src', img.src);
 				  }
 		})
 		}

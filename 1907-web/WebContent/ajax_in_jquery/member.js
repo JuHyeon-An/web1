@@ -89,7 +89,6 @@ let insert = function(){
 			$('#mId').focus();
 			$('#result').addClass('result_ok');
 		});
-		
 	});
 	
 	$('#btnList').click(function(){
