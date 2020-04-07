@@ -26,6 +26,7 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+  --light-blue: #0297A5;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -2819,6 +2820,11 @@ fieldset:disabled a.btn {
   color: #fff;
   background-color: #343a40;
   border-color: #343a40;
+}
+
+.btn-light-blue {
+  color: #fff;
+  background-color: #0297A5;
 }
 
 .btn-dark:hover {

@@ -1,0 +1,37 @@
+/* css/mybatis.css */
+@charset "UTF-8";
+
+#mybatis{
+	width:1000px;
+	margin:auto;
+}
+
+#mybatis>#header{
+	color:#fff;
+	height:250px;
+	background-image:url("../images/벗.jpg");
+	background-size: 100%;
+}
+
+#mybatis>#center{
+	min-height : 250px;
+}
+
+#mybatis>#footer{
+	color:#fff;
+	padding : 50px;
+	background-image:url("../images/footer.jpg");
+	background-size: 100%;
+}
+
+#mybatis #title{
+	background : #A6998F;
+	color: #fff;
+	box-sizing: border-box;
+	padding : 3px;
+}
+
+#mybatis #title span{
+	display : table-cell;
+}
+
