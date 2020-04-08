@@ -80,7 +80,9 @@ public class BoardServlet extends HttpServlet{
 	}
 	
 	public void view() throws ServletException, IOException  {
-		
+		String path = url + "view.jsp";
+		rd = req.getRequestDispatcher(path);
+		rd.forward(req, resp);
 	}
 	
 	public void insert() throws ServletException, IOException  {

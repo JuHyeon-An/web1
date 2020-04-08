@@ -32,4 +32,6 @@ let go = function(nowPage){
 
 let view = function(serial){
 	frmSelect.serial.value = serial;
+	frmSelect.action = "view.myba";
+	frmSelect.submit();
 }

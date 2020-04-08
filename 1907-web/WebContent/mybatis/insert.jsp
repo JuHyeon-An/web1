@@ -31,7 +31,18 @@
 		<label for="pwd">암호</label>
 		<input class="form-control" type="password" name="pwd" value="1"/>
 		<br/>
-		<label for="file">파일 첨부</label>
+
+			<div class="field">
+				<div class="file is-primary has-name">
+					<label class="file-label"> <input class="file-input"
+						type="file" name="resume"> <span class="file-cta">
+							<span class="file-icon"> <i class="fas fa-upload"></i>
+						</span> <span class="file-label"> 파일첨부 </span>
+					</span> <span class="file-name"> </span>
+					</label>
+				</div>
+			</div>
+			<label for="file">파일 첨부</label>
 		<input type="file" name="att" multiple/>
 		<br/>
 		<input class="btn btn-success" type="button" value="저장" id="btnRegister">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel='stylesheet' type='text/css' href='<%=request.getContextPath() %>/css/bootstrap.css'/>
+<link rel='stylesheet' type='text/css' href='<%=request.getContextPath() %>/bulma-0.8.0/css/bulma.css'/>
 <link rel='stylesheet' type='text/css' href='<%=request.getContextPath() %>/css/mybatis.css'/>
 <script src='<%=request.getContextPath() %>/lib/jquery-3.4.1.js'></script>
 <script src='<%=request.getContextPath() %>/js/bootstrap.js'></script>
