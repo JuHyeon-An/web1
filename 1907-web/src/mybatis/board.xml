@@ -5,9 +5,18 @@
 
 <mapper namespace="board">
 	
-	<select id="select" parameterType="mybatis.Page" resultType="mybatis.BoardVo">
-		select id, subject, mDate from board 
+	<select id="count" parameterType="mybatis.Page" resultType="Integer">
+		select count(serial) cnt from board
 		where subject like '%${findStr}%'
+		or	  content like '%${findStr}%'
+	</select> 
+	
+	<select id="select" parameterType="mybatis.Page" resultType="mybatis.BoardVo">
+		select serial, id, subject, to_char(mDate, 'rrrr-mm-dd') mDate, hit 
+		from board 
+		where subject like '%${findStr}%'
+		or	  content like '%${findStr}%'
+		
 	</select>
 		
 	<!--

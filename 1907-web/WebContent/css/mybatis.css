@@ -7,7 +7,6 @@
 }
 
 #mybatis>#header{
-	color:#fff;
 	height:250px;
 	background-image:url("../images/벗.jpg");
 	background-size: 100%;
@@ -28,10 +27,13 @@
 	background : #A6998F;
 	color: #fff;
 	box-sizing: border-box;
-	padding : 3px;
 }
 
 #mybatis #title span{
 	display : table-cell;
+}
+
+.file-name{
+	max-height:200px;
 }
 

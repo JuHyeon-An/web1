@@ -1,37 +1,110 @@
 let getId = function(id){ return document.getElementById(id); }
 let url = "./index_mybatis.jsp?inc=./mybatis/";
 let btnFunc = function(){
+	
 	if(getId('btnInsert')!=null){
 		getId('btnInsert').onclick = function(){
-			frmSelect.action = "insert.myba";
-			frmSelect.submit();
+			frm.action = "insert.myba";
+			frm.submit();
 		}
 	}
 	
 	if(getId('btnList')!=null){
 		getId('btnList').onclick = function(){
-			frmInsert.enctype="";
-			frmInsert.action = "select.myba";
-			frmInsert.submit();
+			frm.enctype="";
+			frm.action = "select.myba";
+			frm.submit();
 		}
 	}
 	
 	if(getId('btnFind')!=null){
 		getId('btnFind').onclick = function(){
-			frmSelect.nowPage.value = 1;
-			frmSelect.action = "select.myba";
-			frmSelect.submit();
+			frm.nowPage.value = 1;
+			frm.action = "select.myba";
+			frm.submit();
+		}
+		
+		
+	}
+	
+	if(getId('btnAtt')!=null){
+		let btn = getId('btnAtt');
+		btn.onchange = function(){
+			let attList = getId('attList'); // 필드셋의 아이디값
+			let str = "<ul>";
+			let files = btn.files; // 그 객체가 가지고 있는 files
+			
+			for(f of files){
+				str += "<li>" + f.name + "( " + parseInt(f.size/1000) + " Kb )";
+			}
+			
+			str+= "</ul>";
+			attList.innerHTML = str;
 		}
 	}
 	
+	if(getId('btnModify')!=null){
+		getId('btnModify').onclick = function(){
+			frm.action = 'modify.myba';
+			frm.submit();
+		}
+	}
+	
+	if(getId('btnUpdate')!=null){
+		getId('btnUpdate').onclick = function(){
+			frm.action = 'modifyR.myba';
+			frm.submit();
+		}
+	}
+	
+	if(getId('btnDelete')!=null){
+		getId('btnDelete').onclick = function(){
+			let password = prompt("삭제하려면 암호를 입력하세요");
+			if(password !=null && password != ""){
+				frm.pwd.value = password;
+				frm.action = "deleteR.myba";
+				frm.submit();
+			}
+		}
+	}
+	
+	if(getId("btnRepl")!=null){
+		getId("btnRepl").onclick = function(){
+			frm.action = "repl.myba";
+			frm.submit();
+		}
+	}
+	
+	if(getId("btnReplR")!=null){
+		getId("btnReplR").onclick = function(){
+			frm.action = "replR.myba";
+			frm.submit();
+		}
+	}
 }
 
 let go = function(nowPage){
-	frmSelect.nowPage.value = nowPage;
+	frm.nowPage.value = nowPage;
 }
 
 let view = function(serial){
-	frmSelect.serial.value = serial;
-	frmSelect.action = "view.myba";
-	frmSelect.submit();
+	frm.serial.value = serial;
+	frm.action = "view.myba";
+	frm.submit();
+}
+
+let delCheck = function(ev){
+	//console.log(ev.parentElement);
+	let tag = ev.parentElement.childNodes[1];
+	// 부모 div가 가지고 있는 두번째 요소 (label)
+	// 첫번째 요소(0번째 인덱스) 는 빈 공백 (text) 으로 인식함
+	
+	//console.log(tag);
+	if(ev.checked){
+		tag.style.textDecoration = "line-through";
+		tag.style.color = "#f00";
+	}else{
+		tag.style.textDecoration = "none";
+		tag.style.color = "";
+	}
 }

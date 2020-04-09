@@ -9,7 +9,7 @@
 <body>
 <div id="mybatis" class="container">
 	<h2>상세보기</h2>
-	<form name="frmInsert" method="post" enctype="multipart/form-data">
+	<form name="frm" method="post" enctype="multipart/form-data">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
 				<span class="input-group-text">작성자</span>
@@ -45,8 +45,10 @@
 		<input class="button is-primary" type="button" value="삭제" id="btnDelete">
 		<input class="button is-primary" type="button" value="댓글" id="btnRepl">
 		<input class="button is-primary" type="button" value="취소" id="btnList">
+		<br/>
 		<input type="text" name="nowPage" value="${param.nowPage}">
 		<input type="text" name="findStr" value="${param.findStr }">
+		<input type="text" name="serial" value="1"/>
 	</form>
 </div>
 </body>

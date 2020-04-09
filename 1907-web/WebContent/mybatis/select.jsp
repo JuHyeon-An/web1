@@ -10,15 +10,16 @@
 <body>
 <div id="mybatis" class="container">
 	<h2>자유 게시판</h2>
-	<form name="frmSelect" method="post">
+	<form name="frm" method="post">
 		<input type="button" class="button is-primary" value="입력" id="btnInsert"/>
 			<div>
 				<div class="field has-addons">
 					<div class="control">
-						<input class="input" type="text" placeholder="검색하세요">
+						<input class="input" type="text" name="findStr" placeholder="검색어를 입력하세요" 
+						value=${param.findStr }>
 					</div>
 					<div class="control">
-						<a class="button is-primary"> 검색 </a>
+						<a class="button is-primary" id="btnFind"> 검색 </a>
 					</div>
 				</div>
 				<input type="text" name="nowPage"
@@ -28,6 +29,7 @@
 
 			</div>
 		</form>
+		<br/>
 	<div id = "mainTable" class="container">
 	<div id="title" class="columns mt-3">
 		<span class="no column">순번</span>
@@ -39,28 +41,36 @@
 	</div>
 	
 	<div id="table">
-	<c:forEach var="i" begin="1" end="20">
-		<div class="columns" onclick="view(${i});">
-			<div class="no column">순번${i }</div>
-			<div class="subject column">제목${i }</div>
-			<div class="id column">작성자${i }</div>
-			<div class="mDate column">작성일${i }</div>
-			<div class="hit column">조회수${i }</div>
+	<c:forEach var="i" items="${list }">
+		<div class="columns" onclick="view(${i.serial});">
+			<div class="no column">${i.serial }</div>
+			<div class="subject column">${i.subject }</div>
+			<div class="id column">${i.id }</div>
+			<div class="mDate column">${i.mDate }</div>
+			<div class="hit column">${i.hit }</div>
 		</div>
 	</c:forEach>
 	</div>
 	</div>
 	
-	<div id="page" class="container mt-3">
-	  <ul class="pagination justify-content-center">
-    	<li class="page-item"><a class="page-link" onclick="go(1);">Previous</a></li>
-		<c:forEach var="i" begin="1" end="10">
-    		<li class="page-item"><a class="page-link" onclick="go(${i});">${i }</a></li>
-    	</c:forEach>
-    	<li class="page-item"><a class="page-link" onclick="go(6);">Next</a></li>
+	<br/>
+	<nav id="page" class="pagination is-centered" role="navigation" aria-label="pagination">
+  <c:if test="${p.startPage>p.blockSize }">
+  	<a class="pagination-previous" onclick="go(${p.startPage-1});">Previous</a>
+  </c:if>
+
+  <ul class="pagination-list">
+  <c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
+    <li><a aria-label="Goto page 1" onclick="go(${i});" 
+    		class="pagination-link ${(param.nowPage==i)? 'is-current' : '' }">${i }</a></li>
+    </c:forEach>
   </ul>
-	</div>
-	
+
+  <c:if test="${p.totPage<p.endPage }">
+	  <a class="pagination-next" onclick="go(${p.endPage+1});">Next page</a>
+  </c:if>
+</nav>
+	<br/>
 	
 </div>
 </body>
