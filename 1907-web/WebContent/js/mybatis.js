@@ -9,6 +9,13 @@ let btnFunc = function(){
 		}
 	}
 	
+	if(getId("btnRegister")!=null){
+		getId("btnRegister").onclick = function(){
+			frm.action = "insertR.myba";
+			frm.submit();
+		}
+	}
+	
 	if(getId('btnList')!=null){
 		getId('btnList').onclick = function(){
 			frm.enctype="";
@@ -23,7 +30,6 @@ let btnFunc = function(){
 			frm.action = "select.myba";
 			frm.submit();
 		}
-		
 		
 	}
 	
@@ -45,6 +51,7 @@ let btnFunc = function(){
 	
 	if(getId('btnModify')!=null){
 		getId('btnModify').onclick = function(){
+			frm.enctype='';
 			frm.action = 'modify.myba';
 			frm.submit();
 		}
@@ -85,6 +92,9 @@ let btnFunc = function(){
 
 let go = function(nowPage){
 	frm.nowPage.value = nowPage;
+	frm.enctype = '';
+	frm.action = "select.myba";
+	frm.submit();
 }
 
 let view = function(serial){

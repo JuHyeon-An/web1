@@ -23,9 +23,8 @@
 					</div>
 				</div>
 				<input type="text" name="nowPage"
-					class="input is-primary is-rounded" value="${param.nowPage }" /> <input
-					type="text" name="serial" class="input is-primary is-rounded"
-					value="100" />
+					class="input is-primary is-rounded" value="${param.nowPage }" />
+				<input type="text" name="serial" class="input is-primary is-rounded"/>
 
 			</div>
 		</form>
@@ -61,12 +60,12 @@
 
   <ul class="pagination-list">
   <c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
-    <li><a aria-label="Goto page 1" onclick="go(${i});" 
-    		class="pagination-link ${(param.nowPage==i)? 'is-current' : '' }">${i }</a></li>
+    <li><a onclick="go(${i});" 
+    		class="pagination-link ${(param.nowPage==i)? 'page-button' : '' }">${i }</a></li>
     </c:forEach>
   </ul>
 
-  <c:if test="${p.totPage<p.endPage }">
+  <c:if test="${p.totPage>p.endPage }">
 	  <a class="pagination-next" onclick="go(${p.endPage+1});">Next page</a>
   </c:if>
 </nav>

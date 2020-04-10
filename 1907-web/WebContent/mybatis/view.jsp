@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,29 +15,29 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text">작성자</span>
 			</div>
-			<input class="input" type="text" name="id" value="안주현"/>
+			<input class="input" type="text" name="id" value="${vo.id }"/>
 		</div>
 		
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
 				<span class="input-group-text">제목</span>
 			</div>
-			<input class="input"  type="text" name="subject" value="하이"/>
+			<input class="input"  type="text" name="subject" value="${vo.subject }"/>
 		</div>
 		
 		
 		<label for="content">내용</label>
-		<textarea class="textarea is-primary" rows="" cols="" name="content"></textarea>
+		<textarea class="textarea is-primary" rows="" cols="" name="content">${vo.content }</textarea>
 		
 		<label for="pwd">암호</label>
-		<input class="form-control input" type="password" name="pwd" value="1"/>
+		<input class="form-control input" type="password" name="pwd" value="${vo.pwd }"/>
 		<br/>
 		<label for="file">파일 첨부</label>
 		<div id="attList">
 			<ul>
-				<ul><a href="abc.png" download="abc.png">abc.png</a></ul>
-				<ul><a href="abc.png" download="abc.png">abc.png</a></ul>
-				<ul><a href="abc.png" download="abc.png">abc.png</a></ul>
+				<c:forEach var="att" items="${attList }">
+				<li><a href="./upload/${att.sysFile }" download="${att.oriFile }">${att.oriFile }</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 		<input type="file" name="att" multiple/>
@@ -48,7 +49,7 @@
 		<br/>
 		<input type="text" name="nowPage" value="${param.nowPage}">
 		<input type="text" name="findStr" value="${param.findStr }">
-		<input type="text" name="serial" value="1"/>
+		<input type="text" name="serial" value="${vo.serial }"/>
 	</form>
 </div>
 </body>

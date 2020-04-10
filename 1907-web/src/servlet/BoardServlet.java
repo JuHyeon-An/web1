@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mybatis.FileUpload;
+import mybatis.AttVo;
 import mybatis.BoardMybatisDao;
 import mybatis.BoardVo;
 import mybatis.Page;
@@ -108,6 +110,18 @@ public class BoardServlet extends HttpServlet{
 	}
 	
 	public void view() throws ServletException, IOException  {
+		int serial = 0;
+		
+		if(req.getParameter("serial")!=null) {
+			serial = Integer.parseInt(req.getParameter("serial"));
+		}
+		
+		BoardVo vo = dao.view(serial);
+		List<AttVo> attList = dao.getAttList(serial);
+		
+		req.setAttribute("vo", vo);
+		req.setAttribute("attList", attList);
+		
 		String path = url + "view.jsp";
 		rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
@@ -121,20 +135,49 @@ public class BoardServlet extends HttpServlet{
 	
 	public void insertR() throws ServletException, IOException  {
 		String path = url + "insert_result.jsp";
-		rd = req.getRequestDispatcher(path);
-		rd.forward(req, resp);
+		FileUpload fu = new FileUpload(req, resp);
+		HttpServletRequest newReq = fu.uploading();
+		
+		BoardVo vo = (BoardVo)newReq.getAttribute("vo");
+		List<AttVo> attList = (List<AttVo>)newReq.getAttribute("attList");
+		String msg = dao.insert(vo, attList);
+		newReq.setAttribute("msg", msg);
+		
+		rd = newReq.getRequestDispatcher(path);
+		rd.forward(newReq, resp);
 	}
 	
 	public void modify() throws ServletException, IOException  {
+		int serial = 0;
+		
+		if(req.getParameter("serial")!=null) {
+			serial = Integer.parseInt(req.getParameter("serial"));
+		}
+		BoardVo vo = dao.view(serial);
+		List<AttVo> attList = dao.getAttList(serial);
+		
+		req.setAttribute("vo", vo);
+		req.setAttribute("attList", attList);
+		
 		String path = url + "modify.jsp";
 		rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
 	}
 	
 	public void modifyR() throws ServletException, IOException  {
+		FileUpload fu = new FileUpload(req, resp);
+		HttpServletRequest newReq = fu.uploading();
+		
+		BoardVo vo = (BoardVo) newReq.getAttribute("vo");
+		List<AttVo> attList = (List<AttVo>) newReq.getAttribute("attList");
+		List<AttVo> delList = (List<AttVo>) newReq.getAttribute("delList");
+		
+		String msg = dao.modify(vo, attList, delList);
+		newReq.setAttribute("msg", msg);
+		
 		String path = url + "modify_result.jsp";
-		rd = req.getRequestDispatcher(path);
-		rd.forward(req, resp);
+		rd = newReq.getRequestDispatcher(path);
+		rd.forward(newReq, resp);
 	}
 	
 	public void deleteR() throws ServletException, IOException  {

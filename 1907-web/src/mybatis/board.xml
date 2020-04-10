@@ -12,13 +12,41 @@
 	</select> 
 	
 	<select id="select" parameterType="mybatis.Page" resultType="mybatis.BoardVo">
-		select serial, id, subject, to_char(mDate, 'rrrr-mm-dd') mDate, hit 
-		from board 
-		where subject like '%${findStr}%'
-		or	  content like '%${findStr}%'
+		select * from(
+			select rownum rno, M.* from(
+				select serial, lpad(' ', (level-1)*12, <![CDATA['&nbsp;&nbsp;']]>)||SUBJECT subject, id, to_char(mdate, 'rrrr-mm-dd') mdate, hit 
+				from board 
+				where subject like '%${findStr}%' 
+				or	  content like '%${findStr}%'
+				connect by prior serial = pserial 
+				start with pserial is NULL 
+				order siblings by serial desc)M
+			) 
+		where rno BETWEEN ${startNo} and ${endNo}
 		
 	</select>
-		
+	
+	<insert id="att_insert" parameterType="mybatis.AttVo">
+		insert into boardAtt(serial, pserial, orifile, sysfile) 
+		values(seq_boardAtt.nextval, seq_board_serial.currval, #{oriFile}, #{sysFile})
+	</insert>
+	
+	<!-- 본문 글 입력-->
+	<insert id="insert" parameterType="mybatis.BoardVo">
+		insert into board(serial, id, pwd, subject, content, mdate, hit) 
+		values(seq_board_serial.nextval, #{id}, #{pwd}, #{subject}, #{content}, sysdate, 0)
+	</insert>
+	
+	<select id="view" parameterType="Integer" resultType="mybatis.BoardVo">
+		select serial, id, subject, content, pwd, hit, pserial, to_char(mdate, 'rrrr-mm-dd') mdate 
+		from board where serial= ${_parameter}
+	</select>
+	
+	<select id="att_list" parameterType="Integer" resultType="mybatis.AttVo">
+		select serial, pserial, orifile, sysfile from boardatt 
+		where pserial=${_parameter}
+	</select>
+	
 	<!--
 	<resultMap id="my_map"/>
 	<update/>

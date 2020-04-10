@@ -2,7 +2,7 @@ package mybatis;
 
 public class Page {
 	int totListSize; // 검색된 결과의 전체 건수
-	int totPage;
+	int totPage; // 토탈 페이지 수
 	int listSize=10; // 10개씩
 	int nowPage=1; // 현재페이지
 	int startNo;

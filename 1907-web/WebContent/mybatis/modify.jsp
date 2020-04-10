@@ -8,22 +8,22 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text">작성자</span>
 			</div>
-			<input type="text" class="input" name="id" value="안주현"/>
+			<input type="text" class="input" name="id" value="${vo.id }"/>
 		</div>
 		
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
 				<span class="input-group-text">제목</span>
 			</div>
-			<input type="text" class="input" name="subject" value="하이"/>
+			<input type="text" class="input" name="subject" value="${vo.subject }"/>
 		</div>
 		
 		
 		<label for="content">내용</label>
-		<textarea class="input" rows="" cols="" name="content"></textarea>
+		<textarea class="input" rows="" cols="" name="content">${vo.content }</textarea>
 		
 		<label for="pwd">암호</label>
-		<input class="input" type="password" name="pwd" value="1"/>
+		<input class="input" type="password" name="pwd" value="${vo.pwd }"/>
 		<br/>
 
 			
@@ -41,15 +41,16 @@
 				</span>
 				</label>
 			</div>
-					<c:forEach var="i" begin="1" end="5">
+					<c:forEach var="i" items="${attList }">
 						<div>
-							<label>aaa.png</label><input class="checkbox" type="checkbox" name="delFile" 
+							<label>${i.oriFile }</label>
+							<input class="checkbox" type="checkbox" name="delFile" value="${i.sysFile }"  
 							onclick="delCheck(this);">
 						</div>					
 					</c:forEach>
 	<br/>
 
-			<input class="btn btn-success" type="button" value="저장" id="btnRegister">
+			<input class="btn btn-success" type="button" value="저장" id="btnUpdate">
 		<input class="btn btn-success" type="button" value="취소" id="btnList">
 		<input type="text" name="nowPage" value="${param.nowPage}">
 		<input type="text" name="findStr" value="${param.findStr }">

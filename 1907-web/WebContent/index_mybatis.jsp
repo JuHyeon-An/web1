@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel='stylesheet' type='text/css' href='<%=request.getContextPath() %>/bulma-0.8.0/css/bulma.css'/>
 <link rel='stylesheet' type='text/css' href='<%=request.getContextPath() %>/css/mybatis.css'/>
-<link rel='stylesheet' type='text/css' href='<%=request.getContextPath() %>/css/fontawesome.min.css'/>
+<script src="https://kit.fontawesome.com/0cf6282279.js" crossorigin="anonymous"></script>
 <script src='<%=request.getContextPath() %>/lib/jquery-3.4.1.js'></script>
 <script src='<%=request.getContextPath() %>/js/bootstrap.js'></script>
 <script src="./js/mybatis.js"></script>
@@ -32,16 +32,33 @@
       </h2>
     </div>
   </div>
-</section>
+<nav class="level" id="level-nav">
+  <p class="level-item has-text-centered">
+    <a class="link">HOME</a>
+  </p>
+  <p class="level-item has-text-centered">
+    <a class="link">조회</a>
+  </p>
+  <p class="level-item has-text-centered">
+    <img src="https://image.flaticon.com/icons/svg/1762/1762755.svg" alt="" style="height: 30px;">
+  </p>
+  <p class="level-item has-text-centered">
+    <a class="link">입력하기</a>
+  </p>
+  <p class="level-item has-text-centered">
+    <a class="link">하이</a>
+  </p>
+</nav>
 
 	<div class="row" id="center">
 		<jsp:include page="<%=inc %>"/>
 	</div>
 	
-	<div class="footer text-center" id="footer">
+	<footer class="footer text-center" id="footer">
 	1907<sup>TM</sup>
-	</div>
+	</footer>
 	
+</section>
 <script>
 btnFunc();
 </script>
