@@ -105,21 +105,21 @@ public class BoardMybatisDao {
 			// 본문 글 수정
 			int cnt = sqlSession.update("board.update", vo);
 			if(cnt<1) {
-				throw new Exception("본문 수정 중 오류가 발생했습니다.");
+				msg = "본문 수정 중 오류가 발생했습니다.";
 			}
 			
 			// boardAtt에 첨부 파일 정보를 추가
 			for(AttVo attVo : attList) {
 				attVo.setSerial(vo.getSerial());
 				cnt = sqlSession.insert("board.att_insert2", attVo);
-				if(cnt<1) throw new Exception("첨부 데이터 정보 수정 중 오류 발생");
+				if(cnt<1) msg = ("첨부 데이터 정보 수정 중 오류 발생");
 			}
 			
 			
 			// boardAtt에 삭제파일 정보를 제거
 			for(AttVo attVo : delList) {
 				cnt = sqlSession.delete("board.att_delete", attVo);
-				if(cnt<1) throw new Exception("파일 삭제 중 오류 발생");
+				if(cnt<1) msg = ("파일 삭제 중 오류 발생");
 			}
 			
 			// 파일을 삭제
@@ -129,7 +129,6 @@ public class BoardMybatisDao {
 		}catch(Exception ex) {
 			delFile(attList);
 			ex.printStackTrace();
-			msg = ex.getMessage();
 			sqlSession.rollback();
 		}finally {
 			sqlSession.close();

@@ -54,5 +54,6 @@
 		<input class="btn btn-success" type="button" value="취소" id="btnList">
 		<input type="text" name="nowPage" value="${param.nowPage}">
 		<input type="text" name="findStr" value="${param.findStr }">
+		<input type="text" name="serial" value="${param.serial }">
 	</form>
 </div>

@@ -104,13 +104,13 @@ public class FileUpload {
 						break;
 					
 					case "serial":
-						if(v!=null) {
+						if(v!=null && v!="") {
 							vo.setSerial(Integer.parseInt(v));
 						}
 						break;
 						
 					case "pSerial":
-						if(v!=null) {
+						if(v!=null && v!="") {
 							vo.setpSerial(Integer.parseInt(v));
 						}
 						break;
@@ -121,7 +121,7 @@ public class FileUpload {
 						break;
 						
 					case "nowPage":
-						if(v!=null) {
+						if(v!=null && v!="") {
 							p.setNowPage(Integer.parseInt(v));
 						}
 						break;

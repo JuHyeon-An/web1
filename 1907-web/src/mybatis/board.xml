@@ -47,6 +47,20 @@
 		where pserial=${_parameter}
 	</select>
 	
+	<update id="update" parameterType="mybatis.BoardVo">
+		update board set subject = #{subject}, content = #{content} 
+		where serial = ${serial} and pwd = #{pwd}
+	</update>
+	
+	<insert id="att_insert2" parameterType="mybatis.AttVo">
+		insert into boardAtt(serial, pserial, orifile, sysfile) 
+		values(seq_boardAtt.nextval, #{serial}, #{oriFile}, #{sysFile})
+	</insert>
+	
+	<delete id="att_delete" parameterType="mybatis.AttVo">
+		delete from boardAtt where sysfile = #{sysFile}
+	</delete>
+	
 	<!--
 	<resultMap id="my_map"/>
 	<update/>

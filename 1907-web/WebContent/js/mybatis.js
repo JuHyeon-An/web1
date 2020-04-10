@@ -51,16 +51,20 @@ let btnFunc = function(){
 	
 	if(getId('btnModify')!=null){
 		getId('btnModify').onclick = function(){
-			frm.enctype='';
-			frm.action = 'modify.myba';
-			frm.submit();
+				frm.enctype='';
+				frm.action = 'modify.myba';
+				frm.submit();
 		}
 	}
 	
 	if(getId('btnUpdate')!=null){
 		getId('btnUpdate').onclick = function(){
+			let pwd = prompt("수정하려면 암호를 입력하세요");
+			if(pwd !=null && pwd != ''){
+			frm.pwd.value = pwd;
 			frm.action = 'modifyR.myba';
 			frm.submit();
+			}
 		}
 	}
 	
