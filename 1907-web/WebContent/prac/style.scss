@@ -1,0 +1,23 @@
+@import '_header';
+@import '_variables';
+
+.contact{
+    background:salmon;
+    border: sienna 2px;
+    @include flexCenter();
+}
+
+.test{
+    button{
+        &:hover{
+            background: sandybrown;
+        }
+
+        &::after{
+            content:'hello';
+        }
+    }
+}
+.contact button{
+    background: $primaryBtn;
+}

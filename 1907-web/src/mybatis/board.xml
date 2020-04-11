@@ -61,6 +61,11 @@
 		delete from boardAtt where sysfile = #{sysFile}
 	</delete>
 	
+	<delete id="delete" parameterType="Integer">
+		delete from board where serial=${_parameter}
+	</delete>
+	
+	
 	<!--
 	<resultMap id="my_map"/>
 	<update/>

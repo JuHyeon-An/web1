@@ -181,6 +181,13 @@ public class BoardServlet extends HttpServlet{
 	}
 	
 	public void deleteR() throws ServletException, IOException  {
+		int serial = 0;
+		if(req.getParameter("serial")!=null) {
+			serial = Integer.parseInt(req.getParameter("serial"));
+		}
+		//System.out.println("시리얼번호 들어오는지 : "+serial);
+		String msg = dao.delete(serial);
+		req.setAttribute("msg", msg);
 		String path = url + "delete_result.jsp";
 		rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);

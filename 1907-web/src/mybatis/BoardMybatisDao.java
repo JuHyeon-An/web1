@@ -1,6 +1,7 @@
 package mybatis;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,9 +25,9 @@ public class BoardMybatisDao {
 			p.setTotListSize(totList);
 			p.pageCompute();
 			System.out.println(totList);
-			System.out.println("마지막 페이지 : "+p.endPage);
+			/*System.out.println("마지막 페이지 : "+p.endPage);
 			System.out.println("endNo : " +p.endNo);
-			System.out.println("totPage : "+p.totPage);
+			System.out.println("totPage : "+p.totPage);*/
 			// 나머지 변수의 값이 설정됨
 			list = sqlSession.selectList("board.select", p);
 			
@@ -105,21 +106,21 @@ public class BoardMybatisDao {
 			// 본문 글 수정
 			int cnt = sqlSession.update("board.update", vo);
 			if(cnt<1) {
-				msg = "본문 수정 중 오류가 발생했습니다.";
+				throw new Exception("본문 수정 중 오류가 발생했습니다.");
 			}
 			
 			// boardAtt에 첨부 파일 정보를 추가
 			for(AttVo attVo : attList) {
 				attVo.setSerial(vo.getSerial());
 				cnt = sqlSession.insert("board.att_insert2", attVo);
-				if(cnt<1) msg = ("첨부 데이터 정보 수정 중 오류 발생");
+				if(cnt<1) throw new Exception("첨부 데이터 정보 수정 중 오류 발생");
 			}
 			
 			
 			// boardAtt에 삭제파일 정보를 제거
 			for(AttVo attVo : delList) {
 				cnt = sqlSession.delete("board.att_delete", attVo);
-				if(cnt<1) msg = ("파일 삭제 중 오류 발생");
+				if(cnt<1) throw new Exception("파일 삭제 중 오류 발생");
 			}
 			
 			// 파일을 삭제
@@ -128,6 +129,35 @@ public class BoardMybatisDao {
 			sqlSession.commit();
 		}catch(Exception ex) {
 			delFile(attList);
+			ex.printStackTrace();
+			msg = ex.getMessage();
+			sqlSession.rollback();
+		}finally {
+			sqlSession.close();
+			return msg;
+		}
+	}
+	
+	public String delete(int serial) {
+		String msg = "정상적으로 삭제되었습니다.";
+		try {
+			int cnt = sqlSession.delete("board.delete", serial);
+			if(cnt<1) {
+				throw new Exception("본문 삭제 중 오류가 발생했습니다.");
+//				System.out.println("삭제 중 오류가 발생했습니다.");
+			}
+			
+			List<AttVo> delList = sqlSession.selectList("board.att_list", serial);
+			
+			for(AttVo vo : delList) {
+				cnt = sqlSession.delete("board.att_delete", vo);
+				if(cnt<1) throw new Exception("사진 삭제 중 오류가 발생했습니다.");
+			}
+			
+			delFile(delList);
+			
+			sqlSession.commit();
+		}catch(Exception ex) {
 			ex.printStackTrace();
 			sqlSession.rollback();
 		}finally {
