@@ -1,9 +1,7 @@
-@import '_header';
-@import '_variables';
+@import "_header.scss";
+@import "_variables.scss";
 
 .contact{
-    background:salmon;
-    border: sienna 2px;
     @include flexCenter();
 }
 
@@ -19,5 +17,5 @@
     }
 }
 .contact button{
-    background: $primaryBtn;
+    background: salmon;
 }

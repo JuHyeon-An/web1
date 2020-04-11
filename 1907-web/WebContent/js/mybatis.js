@@ -70,13 +70,13 @@ let btnFunc = function(){
 	
 	if(getId('btnDelete')!=null){
 		getId('btnDelete').onclick = function(){
-			//let password = prompt("삭제하려면 암호를 입력하세요");
-			//if(password !=null && password != ""){
-				//frm.pwd.value = password;
+			let password = prompt("삭제하려면 암호를 입력하세요");
+			if(password !=null && password != ""){
+				frm.pwd.value = password;
 				frm.enctype='';
 				frm.action = "deleteR.myba";
 				frm.submit();
-			//}
+			}
 		}
 	}
 	
