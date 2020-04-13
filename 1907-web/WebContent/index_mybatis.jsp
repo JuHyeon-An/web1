@@ -43,7 +43,7 @@
     <img src="https://image.flaticon.com/icons/svg/1762/1762755.svg" alt="" style="height: 30px;">
   </p>
   <p class="level-item has-text-centered">
-    <a class="link">입력하기</a>
+    <a class="link" id="btnInsert">입력하기</a>
   </p>
   <p class="level-item has-text-centered">
     <a class="link">하이</a>

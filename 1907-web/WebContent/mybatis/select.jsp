@@ -9,26 +9,37 @@
 </head>
 <body>
 <div id="mybatis" class="container">
-	<h2>자유 게시판</h2>
-	<form name="frm" method="post">
-		<input type="button" class="button is-primary" value="입력" id="btnInsert"/>
-			<div>
-				<div class="field has-addons">
+		<h2 class="title">자유 게시판</h2>
+			<form name="frm" class="level" method="post">
+				
+				<div class="has-addons level-right">
+				<div class="level-item">
+				<div class="control">
+					<div class="select">
+					<select name="search">
+						<option value=0 <c:if test="${param.search == 0}">selected</c:if>>검색범위 설정</option>
+						<option value=1 <c:if test="${param.search == 1}">selected</c:if>>제목</option>
+						<option value=2 <c:if test="${param.search == 2}">selected</c:if>>내용</option>
+						<option value=3 <c:if test="${param.search == 3}">selected</c:if>>제목+내용</option>
+						<option value=4 <c:if test="${param.search == 4}">selected</c:if>>작성자</option>
+						</select>
+					</div>
+				</div>
 					<div class="control">
-						<input class="input" type="text" name="findStr" placeholder="검색어를 입력하세요" 
-						value=${param.findStr }>
+						<input class="input" type="text" name="findStr"
+							placeholder="검색어를 입력하세요" value=${param.findStr }>
 					</div>
 					<div class="control">
 						<a class="button is-primary" id="btnFind"> 검색 </a>
 					</div>
 				</div>
-				<input type="text" name="nowPage"
-					class="input is-primary is-rounded" value="${param.nowPage }" />
-				<input type="text" name="serial" class="input is-primary is-rounded"/>
-			</div>
-		</form>
+				</div>
+
+		<input type="text" name="nowPage" value="${param.nowPage }" />
+		<input type="text" name="serial" />
+			</form>
 		<br/>
-	<div id = "mainTable" class="container">
+		<div id = "mainTable" class="container">
 	<div id="title" class="columns mt-3">
 		<span class="no column">순번</span>
 		<span class="subject column">제목</span>
@@ -71,5 +82,6 @@
 	<br/>
 	
 </div>
+
 </body>
 </html>

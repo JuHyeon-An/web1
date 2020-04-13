@@ -92,5 +92,9 @@
 				<input type="text" name="pwd"/>
 		</form>
 	</div>
+	
+	<script>
+	frm.viewHit.value = '';
+	</script>
 </body>
 </html>

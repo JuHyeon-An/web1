@@ -28,4 +28,38 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+	<select id="where_test" parameterType="mybatis.BoardVo" resultType="Integer">
+		select count(*) from board
+		<where>
+			<if test='serial != 0'>
+				pserial = ${serial}
+			</if>
+			
+			<if test='id != null'>
+				or id like '%${id}%'
+			</if>
+		</where>
+	</select>
+	
+	<update id="set_test" parameterType="mybatis.BoardVo">
+		update board 
+		<set>
+			<if test='subject != null'>
+				subject = #{subject}
+			</if>
+			<if test='content != null'>
+			, content = #{content} 
+			</if>
+		</set>
+			where serial = ${serial}
+	</update>
+	
+	<select id="trim_test" parameterType="mybatis.BoardVo" resultType="Integer">
+		select count(*) from board
+		<trim prefix = 'where' prefixOverrides='or|and' suffixOverrides=','> 
+			or subject like '%${subject}%' ,
+		</trim>
+	</select>
+	
 </mapper>

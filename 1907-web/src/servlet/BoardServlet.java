@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,7 +96,12 @@ public class BoardServlet extends HttpServlet{
 	public void select() throws ServletException, IOException  {
 		String path = url + "select.jsp";
 		Page p = new Page();
+		int search = 0;
 		
+		if(req.getParameter("search")!=null && req.getParameter("search")!="") {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		p.setSearch(search);
 		p.setFindStr(req.getParameter("findStr"));
 		
 		if(req.getParameter("nowPage")!=null && req.getParameter("nowPage")!="") {
@@ -111,26 +117,21 @@ public class BoardServlet extends HttpServlet{
 	
 	public void view() throws ServletException, IOException  {
 		int serial = 0;
-		/*System.out.println(req.getServletPath());
-		System.out.println(req.getHeader("Referer"));
-		
-		int pos2 = req.getHeader("Referer").lastIndexOf("/")+1;
-		// 맨 마지막 슬러시를 찾아서 위치값을 pos에 넣음
-		String tempUrl2 = req.getHeader("Referer").substring(pos2);
-		
-		System.out.println(tempUrl2);
-		System.out.println("remote addr"+req.getRemoteAddr());
-		System.out.println("local addr"+req.getLocalAddr());*/
+		String flag = "";
+		Cookie[] cookies = req.getCookies();
+		Cookie viewCook = null;
+		BoardVo vo = null;
 		
 		if(req.getParameter("serial")!=null) {
 			serial = Integer.parseInt(req.getParameter("serial"));
 		}
 		
-		BoardVo vo = dao.view(serial, 'v');
+		vo = dao.view(serial, "v");
 		List<AttVo> attList = dao.getAttList(serial);
 		
 		req.setAttribute("vo", vo);
 		req.setAttribute("attList", attList);
+		
 		
 		String path = url + "view.jsp";
 		rd = req.getRequestDispatcher(path);
@@ -163,7 +164,7 @@ public class BoardServlet extends HttpServlet{
 		if(req.getParameter("serial")!=null) {
 			serial = Integer.parseInt(req.getParameter("serial"));
 		}
-		BoardVo vo = dao.view(serial, ' ');
+		BoardVo vo = dao.view(serial, "");
 		List<AttVo> attList = dao.getAttList(serial);
 		
 		req.setAttribute("vo", vo);

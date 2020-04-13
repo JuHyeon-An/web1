@@ -7,8 +7,26 @@
 	
 	<select id="count" parameterType="mybatis.Page" resultType="Integer">
 		select count(serial) cnt from board
-		where subject like '%${findStr}%'
-		or	  content like '%${findStr}%'
+		<where>
+
+			<if test='search == 1'>
+				subject like '%${findStr}%'
+			</if>
+			
+			<if test='search == 2'>
+				content like '%${findStr}%'
+			</if>
+			
+			<if test='search == 3'>
+				subject like '%${findStr}%' or 
+				content like '%${findStr}%'
+			</if>
+			
+			<if test='search == 4'>
+				id like '%${findStr}%'
+			</if>
+		</where>
+		
 	</select> 
 	
 	<select id="select" parameterType="mybatis.Page" resultType="mybatis.BoardVo">
@@ -17,8 +35,24 @@
 				select serial, lpad(' ', (level-1)*12, <![CDATA['&nbsp;&nbsp;']]>)||SUBJECT subject, 
 				id, to_char(mdate, 'rrrr-mm-dd') mdate, hit, getAttCnt(serial) attCnt 
 				from board 
-				where subject like '%${findStr}%' 
-				or	  content like '%${findStr}%'
+				<where>
+					<if test='search == 1'>
+						subject like '%${findStr}%'
+					</if>
+					
+					<if test='search == 2'>
+						content like '%${findStr}%'
+					</if>
+					
+					<if test='search == 3'>
+						subject like '%${findStr}%' or 
+						content like '%${findStr}%'
+					</if>
+					
+					<if test='search == 4'>
+						id like '%${findStr}%'
+					</if>
+				</where>
 				connect by prior serial = pserial 
 				start with pserial is NULL 
 				order siblings by serial desc)M

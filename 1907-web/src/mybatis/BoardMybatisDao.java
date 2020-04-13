@@ -76,11 +76,11 @@ public class BoardMybatisDao {
 		}
 	}
 	
-	public BoardVo view(int serial, char v) {
+	public BoardVo view(int serial, String flag) {
 		BoardVo vo = null;
 		int cnt = 0;
 		try {
-			if(v!=' ') {
+			if(flag!="") { //flag값이 있으면 조회수 증가
 				cnt = sqlSession.update("board.hit_up", serial);
 				if(cnt>0) sqlSession.commit();
 			}

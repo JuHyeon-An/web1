@@ -11,6 +11,7 @@ public class Page {
 	int startPage;
 	int endPage;
 	String findStr = "";
+	int search;
 	
 	public Page() {}
 	
@@ -104,6 +105,14 @@ public class Page {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+
+	public int getSearch() {
+		return search;
+	}
+
+	public void setSearch(int search) {
+		this.search = search;
 	}
 	
 	
