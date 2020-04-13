@@ -66,6 +66,8 @@
   </div>
   <div class="field is-horizontal">
   <div class="field-label">
+</div>
+<div class="field-body">
   <div class="file has-name is-boxed">
     <label class="file-label"> <input class="file-input"
         type="file" name="att" multiple id="btnAtt"> <span class="file-cta"> <span
@@ -96,7 +98,8 @@
 
 		<input type="text" name="nowPage" value="${param.nowPage}">
 		<input type="text" name="findStr" value="${param.findStr }">
-		<input type="text" name="serial" value="1">
+		<input type="text" name="serial" value="${param.serial }">
+		<input type="text" name="pSerial" value="${param.serial }">
 	</form>
 
 </div>

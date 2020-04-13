@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTDMapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dynamic">
+	
+	<select id="if_test" parameterType = "String" resultType="mybatis.BoardVo">
+		select * from board 
+		<if test='_parameter!=null'>
+		where subject like '%${_parameter}%' 
+		or 	  content like '%${_parameter}%'
+		</if>
+	</select>
+	
+	<select id="choose_test" parameterType="String" resultType="Integer">
+		<choose>
+			<when test='_parameter.equals("s")'>
+				select count(*) from board where subject like '%h%'
+			</when>
+			
+			<when test='_parameter.equals("c")'>
+				select count(*) from board where content like '%h%'
+			</when>
+			
+			<otherwise>
+				select count(*) from board
+			</otherwise>
+		</choose>
+	</select>
+</mapper>

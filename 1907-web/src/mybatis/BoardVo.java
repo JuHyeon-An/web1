@@ -10,6 +10,7 @@ public class BoardVo {
 	String pwd = "";
 	int hit;
 	int pSerial;
+	int attCnt;
 	
 	
 	public int getSerial() {
@@ -60,7 +61,14 @@ public class BoardVo {
 	public void setpSerial(int pSerial) {
 		this.pSerial = pSerial;
 	}
-
+	public int getAttCnt() {
+		return attCnt;
+	}
+	public void setAttCnt(int attCnt) {
+		this.attCnt = attCnt;
+	}
+	
+	
 	
 	
 }

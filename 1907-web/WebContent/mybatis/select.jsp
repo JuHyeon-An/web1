@@ -25,7 +25,6 @@
 				<input type="text" name="nowPage"
 					class="input is-primary is-rounded" value="${param.nowPage }" />
 				<input type="text" name="serial" class="input is-primary is-rounded"/>
-
 			</div>
 		</form>
 		<br/>
@@ -43,7 +42,7 @@
 	<c:forEach var="i" items="${list }">
 		<div class="columns" onclick="view(${i.serial});">
 			<div class="no column">${i.serial }</div>
-			<div class="subject column">${i.subject }</div>
+			<div class="subject column">${i.subject } ${(i.attCnt>0) ? [i.attCnt] : '' }</div>
 			<div class="id column">${i.id }</div>
 			<div class="mDate column">${i.mDate }</div>
 			<div class="hit column">${i.hit }</div>

@@ -14,7 +14,8 @@
 	<select id="select" parameterType="mybatis.Page" resultType="mybatis.BoardVo">
 		select * from(
 			select rownum rno, M.* from(
-				select serial, lpad(' ', (level-1)*12, <![CDATA['&nbsp;&nbsp;']]>)||SUBJECT subject, id, to_char(mdate, 'rrrr-mm-dd') mdate, hit 
+				select serial, lpad(' ', (level-1)*12, <![CDATA['&nbsp;&nbsp;']]>)||SUBJECT subject, 
+				id, to_char(mdate, 'rrrr-mm-dd') mdate, hit, getAttCnt(serial) attCnt 
 				from board 
 				where subject like '%${findStr}%' 
 				or	  content like '%${findStr}%'
@@ -72,6 +73,16 @@
 	<delete id="att_delete2" parameterType="Integer">
 		delete from boardAtt where pserial = ${_parameter}
 	</delete>
+	
+	<insert id="repl" parameterType="mybatis.BoardVo">
+		insert into board(serial, id, pwd, subject, content, mdate, hit, pserial) 
+		values(seq_board_serial.nextval, #{id}, #{pwd}, #{subject}, #{content}, sysdate, 0, ${pSerial} )
+	</insert>
+
+	<update id="hit_up" parameterType="Integer">
+		update board set hit = hit+1 where serial = ${_parameter}
+	</update>
+
 	<!--
 	<resultMap id="my_map"/>
 	<update/>

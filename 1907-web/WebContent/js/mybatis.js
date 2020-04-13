@@ -82,7 +82,8 @@ let btnFunc = function(){
 	
 	if(getId("btnRepl")!=null){
 		getId("btnRepl").onclick = function(){
-			frm.action = "repl.myba";
+			frm.enctype='';
+			frm.action = "./index_mybatis.jsp?inc=./mybatis/repl.jsp";
 			frm.submit();
 		}
 	}

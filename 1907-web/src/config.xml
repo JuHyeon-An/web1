@@ -20,5 +20,6 @@
 	
 	<mappers>
 		<mapper resource="mybatis/board.xml"/>
+		<mapper resource="mybatis/dynamic.xml"/>
 	</mappers>
 </configuration>

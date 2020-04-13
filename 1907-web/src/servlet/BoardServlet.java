@@ -111,12 +111,22 @@ public class BoardServlet extends HttpServlet{
 	
 	public void view() throws ServletException, IOException  {
 		int serial = 0;
+		/*System.out.println(req.getServletPath());
+		System.out.println(req.getHeader("Referer"));
+		
+		int pos2 = req.getHeader("Referer").lastIndexOf("/")+1;
+		// 맨 마지막 슬러시를 찾아서 위치값을 pos에 넣음
+		String tempUrl2 = req.getHeader("Referer").substring(pos2);
+		
+		System.out.println(tempUrl2);
+		System.out.println("remote addr"+req.getRemoteAddr());
+		System.out.println("local addr"+req.getLocalAddr());*/
 		
 		if(req.getParameter("serial")!=null) {
 			serial = Integer.parseInt(req.getParameter("serial"));
 		}
 		
-		BoardVo vo = dao.view(serial);
+		BoardVo vo = dao.view(serial, 'v');
 		List<AttVo> attList = dao.getAttList(serial);
 		
 		req.setAttribute("vo", vo);
@@ -153,7 +163,7 @@ public class BoardServlet extends HttpServlet{
 		if(req.getParameter("serial")!=null) {
 			serial = Integer.parseInt(req.getParameter("serial"));
 		}
-		BoardVo vo = dao.view(serial);
+		BoardVo vo = dao.view(serial, ' ');
 		List<AttVo> attList = dao.getAttList(serial);
 		
 		req.setAttribute("vo", vo);
@@ -210,6 +220,16 @@ public class BoardServlet extends HttpServlet{
 	}
 	
 	public void replR() throws ServletException, IOException  {
+		
+		FileUpload fu = new FileUpload(req, resp);
+		req = fu.uploading();
+		
+		BoardVo vo = (BoardVo)req.getAttribute("vo");
+		List<AttVo> attList = (List<AttVo>)req.getAttribute("attList");
+		
+		String msg = dao.repl(vo, attList);
+		req.setAttribute("msg", msg);
+		
 		String path = url + "repl_result.jsp";
 		rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);

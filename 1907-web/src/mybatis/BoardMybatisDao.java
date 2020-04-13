@@ -76,12 +76,19 @@ public class BoardMybatisDao {
 		}
 	}
 	
-	public BoardVo view(int serial) {
+	public BoardVo view(int serial, char v) {
 		BoardVo vo = null;
+		int cnt = 0;
 		try {
+			if(v!=' ') {
+				cnt = sqlSession.update("board.hit_up", serial);
+				if(cnt>0) sqlSession.commit();
+			}
+			
 			vo = sqlSession.selectOne("board.view", serial);
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			sqlSession.rollback();
 		}finally {
 			// 사진첨부에서 또 session을 불러와야하므로 close 시키면 안됨
 			return vo;
@@ -172,6 +179,31 @@ public class BoardMybatisDao {
 			msg = ex.getMessage();
 			ex.printStackTrace();
 			sqlSession.rollback();
+		}finally {
+			sqlSession.close();
+			return msg;
+		}
+	}
+	
+	public String repl(BoardVo vo, List<AttVo> attList) {
+		String msg = "답글이 등록되었습니다.";
+		int cnt = 0;
+		try {
+			// 댓글 저장
+			cnt = sqlSession.insert("board.repl", vo);
+			if(cnt<1) throw new Exception("댓글 저장 중 오류 발생");
+			
+			// 첨부 데이터 저장
+			for(AttVo attVo : attList) {
+				cnt = sqlSession.insert("board.att_insert", attVo);
+				if(cnt<1) throw new Exception("첨부 데이터 저장 중 오류 발생");
+			}
+			
+			sqlSession.commit();
+		}catch(Exception ex) {
+			delFile(attList);
+			sqlSession.rollback();
+			ex.printStackTrace();
 		}finally {
 			sqlSession.close();
 			return msg;
