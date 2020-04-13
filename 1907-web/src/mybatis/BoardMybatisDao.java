@@ -138,26 +138,38 @@ public class BoardMybatisDao {
 		}
 	}
 	
-	public String delete(int serial) {
+	public String delete(BoardVo vo) {
 		String msg = "정상적으로 삭제되었습니다.";
+		int cnt = 0;
 		try {
-			int cnt = sqlSession.delete("board.delete", serial);
+			// 삭제하기 전 댓글 존재 파악
+			// 내 시리얼이 어떤 데이터의 pserial이면 exception
+			cnt = sqlSession.selectOne("board.repl_cnt", vo.getSerial());
+			if(cnt>0) throw new Exception("댓글이 있는 자료는 삭제할 수 없습니다.");
+			
+			// 본문 삭제
+			/*System.out.println("시리얼 "+vo.getSerial());
+			System.out.println("비밀번호 "+vo.getPwd());*/
+			cnt = sqlSession.delete("board.delete", vo);
 			if(cnt<1) {
 				throw new Exception("본문 삭제 중 오류가 발생했습니다.");
-//				System.out.println("삭제 중 오류가 발생했습니다.");
 			}
+
+			// 첨부된 파일 목록
+			List<AttVo> delList = sqlSession.selectList("board.att_list", vo.getSerial());
 			
-			List<AttVo> delList = sqlSession.selectList("board.att_list", serial);
-			
-			for(AttVo vo : delList) {
-				cnt = sqlSession.delete("board.att_delete", vo);
+			// 첨부 테이블 자료 삭제
+			//for(AttVo attVo : delList) {
+				cnt = sqlSession.delete("board.att_delete2", vo.getSerial());
 				if(cnt<1) throw new Exception("사진 삭제 중 오류가 발생했습니다.");
-			}
+			//}
 			
+			// 실제 사진 파일 삭제
 			delFile(delList);
 			
 			sqlSession.commit();
 		}catch(Exception ex) {
+			msg = ex.getMessage();
 			ex.printStackTrace();
 			sqlSession.rollback();
 		}finally {

@@ -50,16 +50,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="field is-horizontal">
-				<div class="field-label is-normal">
-					<label class="label">암호</label>
-				</div>
-				<div class="field-body">
-					<div class="control">
-						<input class="input" type="password" name="pwd" value="${vo.pwd }" />
-					</div>
-				</div>
-			</div>
+			
 			<div class="field is-horizontal">
 				<div class="field-label is-normal">
 					<label class="label">파일 첨부</label>
@@ -98,6 +89,7 @@
 			<input type="text" name="nowPage" value="${param.nowPage}"> <input
 				type="text" name="findStr" value="${param.findStr }"> <input
 				type="text" name="serial" value="${vo.serial }" />
+				<input type="text" name="pwd"/>
 		</form>
 	</div>
 </body>
