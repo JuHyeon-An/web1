@@ -155,6 +155,39 @@ public class DynamicSql {
 		 * -- item : collection의 종류가 Map/List 이면 value
 		 */
 		
+		session = boardFactory.getFactory().openSession();
+		String findStr = "hong kim,lee, an , kang";
+		String[] value2 = findStr.split(",| ");
+		
+		String[] value = {"hong", "kim", "lee"};
+		
+		for (int i = 0; i < value2.length; i++) {
+			System.out.println(value2[i]);
+		}
+		
+		//검색할때 아이디가 hong이거나 kim이거나 lee인 게시물을 조회
+		List<BoardVo> list = session.selectList("dynamic.foreach_test", value);
+		for(BoardVo v : list) {
+			System.out.println(v.getId()+"-"+v.getSubject());
+		}
+		
+		session.close();
+	}
+	
+	public void plSqlTest() {
+		session = boardFactory.getFactory().openSession();
+		BoardVo vo = new BoardVo();
+		vo.setSerial(3); // 1번 데이터를 반환받겠다
+		session.selectOne("dynamic.pl_sql", vo);
+		// 전달된 vo를 타고 다시 vo에 값이 들어옴
+		
+		System.out.println(vo.getId());
+		System.out.println(vo.getSubject());
+		System.out.println(vo.getmDate());
+		System.out.println(vo.getHit());
+		System.out.println(vo.getContent());
+		
+		session.close();
 	}
 	
 	public static void main(String[] args) {
@@ -164,6 +197,7 @@ public class DynamicSql {
 //		dynamic.whereTest();
 //		dynamic.setTest();
 //		dynamic.trimTest();
-		dynamic.foreachTest();
+//		dynamic.foreachTest();
+		dynamic.plSqlTest();
 	}
 }

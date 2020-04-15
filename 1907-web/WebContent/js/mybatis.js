@@ -105,7 +105,6 @@ let go = function(nowPage){
 
 let view = function(serial){
 	frm.serial.value = serial;
-	frm.viewHit.value = 'v';
 	frm.action = "view.myba";
 	frm.submit();
 }
