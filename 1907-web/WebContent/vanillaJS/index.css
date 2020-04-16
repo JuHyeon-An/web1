@@ -1,10 +1,46 @@
 body{
+    font-family: "나눔스퀘어";
     background-color: #2C3A47;
+    min-height: 100%;
+    overflow: hidden;
+    text-shadow:  2px 2px 2px #2C3A47;
+    display:block;
+    height:100%;
+    opacity: 0.9;
+}
+.main{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ask-name{
+    outline: 0;
+    border: none;
+    background: transparent;
+    font-weight: 100;
+    font-size: 100%;
+    text-align: center;
+    color:#fff;
+}
+
+input::placeholder{
+    color: #fff;
 }
 
 h1{
+    display: block;
     color:#fff;
-    background-color: plum;
+    font-size: 1050%;
+    font-weight: 500;
+    letter-spacing: -10px;
+    margin-bottom: 10px;
 }
 
 .btn{
@@ -20,11 +56,38 @@ h1{
 .form,
 .greetings{
     display:none;
+   
 }
+
+.input-toDo{
+    width: 100%;
+    padding-top: 4px;
+    display: block;
+    background: 0;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-size: 2em;
+    outline: 0;
+    text-align: center;
+    transition: border-color .2s ease;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
 
 .showing{
     display : block;
+    font-size:  337.5%;;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    color: whitesmoke;
 }
+
 
 @keyframes fadeIn {
     from{
@@ -43,5 +106,18 @@ h1{
     height: 100%;
     z-index: -1;
     animation : fadeIn 0.5s linear;
+}
+
+.js-toDoList{
+    margin-top: 10px;
+    list-style: none;
+    color:whitesmoke;
+    font-size: 1.5em;
+}
+
+li button{
+    border: none;
+    outline: none;
+    background: transparent;
 }
 
